@@ -138,7 +138,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
       mAdapter = new SearchListRecyclerAdapter(this);
       mListView.setAdapter(mAdapter);
 
-      handleIntent(getIntent(), false);
+      handleIntent(getIntent(), true);
    }
 
    @Override
