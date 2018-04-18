@@ -1,5 +1,6 @@
 package com.dozuki.ifixit.ui.topic;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -9,8 +10,11 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -160,6 +164,17 @@ public class TopicViewActivity extends BaseActivity {
             startActivity(FullImageViewActivity.viewImage(getBaseContext(), url1, false));
          }
       });
+   }
+
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+      getMenuInflater().inflate(R.menu.topic_list_menu, menu);
+      // Retrieve the SearchView and plug it into SearchManager
+      final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+      SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+      searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+      return true;
    }
 
    @Override
