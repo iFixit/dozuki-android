@@ -311,7 +311,9 @@ public abstract class BaseMenuDrawerActivity extends BaseActivity
           .into(avatar);
 
          mMenu.findItem(R.id.nav_logout).setVisible(true);
-      } else if (App.get().getSite().isIfixit()) {
+      }
+
+      if (App.get().getSite().isIfixit()) {
          header = getLayoutInflater().inflate(R.layout.navigation_header, mDrawerList, false);
 
          AppCompatImageView navLogoView = (AppCompatImageView) header.findViewById(R.id.navigation_site_logo);
