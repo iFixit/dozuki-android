@@ -65,6 +65,8 @@
 
     <style name="Theme.Accustream" parent="Theme.Base"></style>
 
+    <style name="Theme.HyperthermToolkit" parent="Theme.Base"></style>
+
     <style name="Theme.Aristocrat" parent="Theme.Base"></style>
 
     <style name="Theme.DripAssist" parent="Theme.Base"></style>
@@ -88,6 +90,8 @@
     <style name="Theme.Aristocrat.TransparentActionBar" parent="Theme.CharlesSmith"></style>
 
     <style name="Theme.CharlesSmith.TransparentActionBar" parent="Theme.CharlesSmith"></style>
+
+    <style name="Theme.HyperthermToolkit.TransparentActionBar" parent="Theme.HyperthermToolkit"></style>
 
     <style name="Theme.iFixit.TransparentActionBar" parent="Theme.iFixit"></style>
 

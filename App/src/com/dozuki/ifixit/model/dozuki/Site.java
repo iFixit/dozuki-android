@@ -198,6 +198,8 @@ public class Site implements Serializable {
          return R.style.Theme_CharlesSmith;
       } else if (isAristocrat()) {
          return R.style.Theme_Aristocrat;
+      } else if (isHyperthermToolkit()) {
+         return R.style.Theme_HyperthermToolkit;
       } else {
          // We don't have a custom theme for the site - check for generic theme.
          if (mTheme.equals("custom")) {
@@ -359,6 +361,20 @@ public class Site implements Serializable {
          site.mPublicRegistration = false;
          site.mObjectNamePlural = res.getString(R.string.categories);
          site.mObjectNameSingular = res.getString(R.string.category);
+      } else if (siteName.equals("hyperthermtoolkit")) {
+         site = new Site(4300);
+         site.mName = "hyperthermtoolkit";
+         site.mDomain = "hyperthermtoolkit.dozuki.com";
+         site.mTitle = "Hypertherm Toolkit";
+         site.mTheme = "custom";
+         site.mPublic = false;
+         site.mAnswers = false;
+         site.mDescription = "";
+         site.mStandardAuth = true;
+         site.mSsoUrl = null;
+         site.mPublicRegistration = false;
+         site.mObjectNamePlural = res.getString(R.string.categories);
+         site.mObjectNameSingular = res.getString(R.string.category);
       }
 
       return site;
@@ -406,6 +422,10 @@ public class Site implements Serializable {
 
    public boolean isDozuki() {
       return mName.equals("dozuki");
+   }
+
+   public boolean isHyperthermToolkit() {
+      return mName.equals("hyperthermtoolkit");
    }
 
    public Image getLogo() {

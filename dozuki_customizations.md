@@ -79,4 +79,5 @@ Kestore Generation
 
 
     keytool -genkey -dname "cn={Site}, ou={Site}, o={Site}, c=US" -v -keystore {site} -alias {site}_keystore -keyalg RSA -keysize 2048 -validity 36500
+    keytool -genkey -dname "cn=HyperthermToolkit, ou=HyperthermToolkit, o=HyperthermToolkit, c=US" -v -keystore keystore -alias hyperthermtoolkit_keystore -keyalg RSA -keysize 2048 -validity 36500
 
