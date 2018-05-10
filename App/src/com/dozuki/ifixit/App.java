@@ -7,8 +7,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -24,6 +22,7 @@ import com.dozuki.ifixit.model.dozuki.SiteChangedEvent;
 import com.dozuki.ifixit.model.user.LoginEvent;
 import com.dozuki.ifixit.model.user.User;
 import com.dozuki.ifixit.util.ImageSizes;
+import com.dozuki.ifixit.util.LocaleManager;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiContentProvider;
@@ -171,6 +170,21 @@ public class App extends Application {
          // cannot set it after Picasso.with(Context) was already in use
       }
    }
+
+
+   @Override
+   protected void attachBaseContext(Context base) {
+      super.attachBaseContext(LocaleManager.setLocale(base));
+      Log.d(TAG, "attachBaseContext");
+   }
+
+   @Override
+   public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      LocaleManager.setLocale(this);
+      Log.d(TAG, "onConfigurationChanged: " + newConfig.locale.getLanguage());
+   }
+
 
    public static void sendEvent(String category, String action, String label, Long value) {
       mGaTracker.send(MapBuilder.createEvent(category, action, label, value).build());

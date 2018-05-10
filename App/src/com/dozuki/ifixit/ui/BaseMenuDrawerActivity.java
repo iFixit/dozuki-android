@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.webkit.URLUtil;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ import com.squareup.picasso.RequestCreator;
  * Base activity that displays the menu drawer.
  */
 public abstract class BaseMenuDrawerActivity extends BaseActivity
- implements NavigationView.OnNavigationItemSelectedListener {
+ implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
    private static final String STATE_ACTIVE_POSITION =
     "com.dozuki.ifixit.ui.BaseMenuDrawerActivity.activePosition";
    private static final String PEEK_MENU = "PEEK_MENU_KEY";
@@ -60,6 +61,8 @@ public abstract class BaseMenuDrawerActivity extends BaseActivity
    private String mTitle;
    private ActionBarDrawerToggle mDrawerToggle;
    private Menu mMenu;
+
+   private android.widget.Spinner mLanguageSpinner;
 
    @Override
    public void onCreate(Bundle savedState) {
@@ -447,5 +450,10 @@ public abstract class BaseMenuDrawerActivity extends BaseActivity
          Toast.makeText(this, "Failed to launch QR code scanner.", Toast.LENGTH_SHORT).show();
          Log.e("BaseMenuDrawerActivity", "Cannot launch barcode scanner", e);
       }
+   }
+
+   @Override
+   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
    }
 }

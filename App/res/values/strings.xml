@@ -378,4 +378,6 @@
     <string name="featured_document">Featured Document</string>
     <string name="google_photos_download_error">There was a problem downloading your image from Google Photos.  Try saving the photo to your device and try uploading again.</string>
     <string name="attached_documents">Attached Documents</string>
+    <string name="language_select">Language Select</string>
+    <string name="language_changed_toast">Language Changed</string>
 </resources>

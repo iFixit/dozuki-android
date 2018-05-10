@@ -24,6 +24,7 @@ public class Guide implements Serializable {
    protected String mType;
    protected String mTimeRequired;
    protected String mDifficulty;
+   protected String mLocale = "en";
    protected String mIntroductionRendered;
    protected String mIntroductionRaw;
    protected String mSubject;
@@ -155,6 +156,14 @@ public class Guide implements Serializable {
 
    public boolean isPublic() {
       return mPublic;
+   }
+
+   public void setLocale(String locale) {
+      mLocale = locale;
+   }
+
+   public String getLocale() {
+      return mLocale;
    }
 
    public int getNumSteps() {

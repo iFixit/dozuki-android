@@ -3,7 +3,6 @@ package com.dozuki.ifixit.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +62,8 @@ public class GuideListRecyclerAdapter extends RecyclerView.Adapter<GuideListRecy
 
    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
       private final TextView mTitleView;
+      private final TextView mLocale;
+
       private final ImageView mThumbnail;
       private final Picasso mPicasso;
 
@@ -76,6 +77,7 @@ public class GuideListRecyclerAdapter extends RecyclerView.Adapter<GuideListRecy
 
          mTitleView = (TextView)v.findViewById(R.id.guide_grid_item_title);
          mThumbnail = (ImageView)v.findViewById(R.id.guide_grid_item_thumbnail);
+         mLocale = (TextView)v.findViewById(R.id.guide_locale);
          mPicasso = Picasso.with(v.getContext());
 
          v.findViewById(R.id.guide_item_target).setOnClickListener(this);
@@ -85,6 +87,7 @@ public class GuideListRecyclerAdapter extends RecyclerView.Adapter<GuideListRecy
       public void setItem(GuideInfo guide) {
          mGuide = guide;
          mTitleView.setText(mGuide.mTitle);
+         mLocale.setText(mGuide.mLocale);
          Transformation transform = new RoundedTransformation(4, 0);
 
          if (guide.hasImage()) {

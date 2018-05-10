@@ -203,6 +203,7 @@ public class JSONHelper {
       guide.setTopic(jGuide.getString("category"));
       guide.setSubject(jGuide.getString("subject"));
       guide.setAuthor(jAuthor.getString("username"));
+      guide.setLocale(jGuide.getString("locale"));
       guide.setTimeRequired(jGuide.getString("time_required"));
       guide.setDifficulty(jGuide.getString("difficulty"));
       guide.setIntroductionRaw(jGuide.getString("introduction_raw"));
