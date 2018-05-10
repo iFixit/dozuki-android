@@ -30,6 +30,7 @@ public class Site implements Serializable {
    public String mCustomDomain = "";
    public String mStoreUrl;
    public Image mLogo;
+   public String[] mAvailableLanguages = {"en"};
 
    public String mObjectNameSingular;
    public String mObjectNamePlural;
@@ -230,6 +231,7 @@ public class Site implements Serializable {
       if (siteName.equals("ifixit")) {
          site = new Site(2);
          site.mName = "ifixit";
+         site.mAvailableLanguages = new String[]{"en", "de", "fr"};
          site.mDomain = "www.ifixit.com";
          site.mTitle = "iFixit";
          site.mTheme = "custom";
@@ -378,6 +380,10 @@ public class Site implements Serializable {
       }
 
       return site;
+   }
+
+   public String[] getAvailableLanguages() {
+      return mAvailableLanguages;
    }
 
    @Override

@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
@@ -20,6 +19,7 @@ import com.dozuki.ifixit.model.dozuki.SiteChangedEvent;
 import com.dozuki.ifixit.model.user.LoginEvent;
 import com.dozuki.ifixit.model.user.User;
 import com.dozuki.ifixit.ui.auth.LoginFragment;
+import com.dozuki.ifixit.util.LocaleManager;
 import com.dozuki.ifixit.util.ViewServer;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiEvent;
@@ -44,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
    private static final int LOGGED_OUT_USERID = -1;
+   private static final String TAG = "BaseActivity";
    protected Toolbar mToolbar;
    protected FrameLayout mContentFrame;
 
@@ -51,6 +52,9 @@ public abstract class BaseActivity extends AppCompatActivity {
    private int mUserid;
    private Site mSite;
    private LoginFragment.GoogleSignInActivityResult mPendingGoogleSigninResult;
+
+   protected boolean mUserInteracting = false;
+
 
    /**
     * This is incredibly hacky. The issue is that Otto does not search for @Subscribed
@@ -111,6 +115,12 @@ public abstract class BaseActivity extends AppCompatActivity {
          setUserid();
       }
    };
+
+   @Override
+   protected void attachBaseContext(Context base) {
+      super.attachBaseContext(LocaleManager.setLocale(base));
+      Log.d(TAG, "attachBaseContext");
+   }
 
    @Override
    public void onActivityResult(int requestCode, int resultCode, Intent data) {

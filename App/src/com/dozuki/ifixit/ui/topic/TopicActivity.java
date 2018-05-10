@@ -14,20 +14,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.topic.TopicNode;
-import com.dozuki.ifixit.ui.BaseMenuDrawerActivity;
 import com.dozuki.ifixit.ui.LoadingFragment;
-import com.dozuki.ifixit.ui.search.SearchActivity;
+import com.dozuki.ifixit.util.LocaleManager;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
 import com.squareup.otto.Subscribe;
 
-public class TopicActivity extends BaseMenuDrawerActivity
- implements TopicSelectedListener, FragmentManager.OnBackStackChangedListener, SearchView.OnQueryTextListener {
+public class TopicActivity extends BaseTopicActivity
+ implements TopicSelectedListener, FragmentManager.OnBackStackChangedListener {
    private static final String ROOT_TOPIC = "ROOT_TOPIC";
    private static final String TOPIC_LIST_VISIBLE = "TOPIC_LIST_VISIBLE";
    protected static final long TOPIC_LIST_HIDE_DELAY = 1;
@@ -138,34 +139,6 @@ public class TopicActivity extends BaseMenuDrawerActivity
    public void onTopic(ApiEvent.Topic event) {
       hideTopicLoading();
    }
-
-   @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-      getMenuInflater().inflate(R.menu.topic_list_menu, menu);
-      // Retrieve the SearchView and plug it into SearchManager
-      final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-      SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-      searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-      return true;
-   }
-
-   @Override
-   public boolean onQueryTextSubmit(String query) {
-      Intent searchIntent = new Intent(this, SearchActivity.class);
-      searchIntent.putExtra(SearchManager.QUERY, query);
-      searchIntent.setAction(Intent.ACTION_SEARCH);
-
-      startActivity(searchIntent);
-
-      return true; // we start the search activity manually
-   }
-
-   @Override
-   public boolean onQueryTextChange(String newText) {
-      return false;
-   }
-
 
    @Override
    public void onSaveInstanceState(Bundle outState) {
@@ -323,5 +296,10 @@ public class TopicActivity extends BaseMenuDrawerActivity
          ft.show(frag);
          ft.commit();
       }
+   }
+
+   @Override
+   public Intent getLanguageIntent() {
+      return new Intent();
    }
 }

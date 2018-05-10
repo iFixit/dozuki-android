@@ -3,9 +3,11 @@ package com.dozuki.ifixit.util.api;
 import android.net.Uri;
 import android.util.Log;
 
+import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.model.Comment;
 import com.dozuki.ifixit.model.dozuki.Site;
 import com.dozuki.ifixit.util.JSONHelper;
+import com.dozuki.ifixit.util.LocaleManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +16,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -884,7 +885,7 @@ public enum ApiEndpoint {
       String domain;
       String protocol;
       String url;
-      String langid = Locale.getDefault().getLanguage();
+      String langid = LocaleManager.getLanguage(App.get().getApplicationContext());
 
       if (site != null) {
          domain = site.getAPIDomain();
@@ -897,7 +898,7 @@ public enum ApiEndpoint {
        mEndpoint.createUrl(query));
 
       if (VALID_LANGIDS.contains(langid)) {
-         url = Uri.parse(url).buildUpon().appendQueryParameter("lang", langid).build().toString();
+         url = Uri.parse(url).buildUpon().appendQueryParameter("langid", langid).build().toString();
       }
 
       return url;

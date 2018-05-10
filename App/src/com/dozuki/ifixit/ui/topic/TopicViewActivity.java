@@ -3,6 +3,7 @@ package com.dozuki.ifixit.ui.topic;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,13 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.dozuki.Site;
 import com.dozuki.ifixit.model.topic.TopicLeaf;
 import com.dozuki.ifixit.model.topic.TopicNode;
-import com.dozuki.ifixit.ui.BaseActivity;
 import com.dozuki.ifixit.ui.guide.view.FullImageViewActivity;
 import com.dozuki.ifixit.ui.topic.adapters.TopicPageAdapter;
 import com.dozuki.ifixit.util.ImageSizes;
@@ -34,7 +36,7 @@ import com.dozuki.ifixit.util.api.ApiEvent;
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
 
-public class TopicViewActivity extends BaseActivity {
+public class TopicViewActivity extends BaseTopicActivity {
    public static final String TOPIC_KEY = "TOPIC";
    public static final String TOPIC_NAME_KEY = "TOPIC_NAME_KEY";
    private static final String TOPIC_VIEW_TAG = "TOPIC_VIEW_TAG";
@@ -48,6 +50,7 @@ public class TopicViewActivity extends BaseActivity {
    private TopicPageAdapter mPageAdapter;
    private CollapsingToolbarLayout mCollapsingToolbar;
    private Site mSite;
+   private String mTopicName;
 
    public static Intent viewTopic(Context context, String topicName) {
       Intent intent = new Intent(context, TopicViewActivity.class);
@@ -76,24 +79,52 @@ public class TopicViewActivity extends BaseActivity {
       mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
          @Override
          public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-            final Drawable upArrow;
+            final Drawable upArrow, searchIcon;
+            int color;
 
             // Appbar is collapsed
             if (verticalOffset == -mCollapsingToolbar.getHeight() + mToolbar.getHeight()) {
+               color = R.color.white;
+
                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                  upArrow =  getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp, getTheme());
+                  upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp, getTheme());
+                  searchIcon = getResources().getDrawable(R.drawable.ic_search_24dp, getTheme());
                } else {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp);
+                  searchIcon = getResources().getDrawable(R.drawable.ic_search_24dp);
                }
             } else {
+               color = R.color.black;
+
                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp, getTheme());
+                  searchIcon = getResources().getDrawable(R.drawable.ic_search_black_24dp, getTheme());
                } else {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+                  searchIcon = getResources().getDrawable(R.drawable.ic_search_black_24dp);
                }
             }
 
             getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+            if (mMenu != null) {
+               mMenu.findItem(R.id.action_search).setIcon(searchIcon);
+
+               MenuItem item = mMenu.findItem(R.id.spinner);
+               Spinner spinner = (Spinner) item.getActionView();
+
+               ((TextView) spinner.getChildAt(0)).setTextColor(getResources().getColor(color));
+
+               Drawable spinnerDrawable = spinner.getBackground().getConstantState().newDrawable();
+
+               spinnerDrawable.setColorFilter(getResources().getColor(color), PorterDuff.Mode.SRC_ATOP);
+
+               if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                  spinner.setBackground(spinnerDrawable);
+               } else {
+                  spinner.setBackgroundDrawable(spinnerDrawable);
+               }
+            }
          }
       });
 
@@ -110,20 +141,20 @@ public class TopicViewActivity extends BaseActivity {
       mTopicNode = (TopicNode) getIntent().getSerializableExtra(TOPIC_KEY);
 
       Bundle bundle;
-      String topicName = "";
+      mTopicName = "";
       String topicTitle = "";
 
 
       if (mTopicNode != null) {
-         topicName = mTopicNode.getDisplayName();
+         mTopicName = mTopicNode.getDisplayName();
          topicTitle = mTopicNode.getName();
       } else if ((bundle = getIntent().getExtras()) != null) {
-         topicName = bundle.getString(TOPIC_NAME_KEY);
+         mTopicName = bundle.getString(TOPIC_NAME_KEY);
          topicTitle = bundle.getString(TOPIC_NAME_KEY);
       }
 
-      if (!topicName.equals("")) {
-         mCollapsingToolbar.setTitle(topicName);
+      if (!mTopicName.equals("")) {
+         mCollapsingToolbar.setTitle(mTopicName);
          mCollapsingToolbar.setCollapsedTitleTextAppearance(R.style.TextAppearance_AppCompat_Title);
          mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
 
@@ -213,5 +244,13 @@ public class TopicViewActivity extends BaseActivity {
    public void hideLoading() {
       super.hideLoading();
       findViewById(R.id.loading_container).setVisibility(View.GONE);
+   }
+
+   @Override
+   public Intent getLanguageIntent() {
+      Intent i = new Intent();
+      i.putExtra(TOPIC_NAME_KEY, mTopicName);
+
+      return i;
    }
 }

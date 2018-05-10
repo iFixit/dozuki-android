@@ -10,29 +10,37 @@
         style="@style/CardListItem">
 
     <RelativeLayout
-            android:layout_centerVertical="true"
-            style="@style/CardListItemInner"
-            android:id="@+id/guide_item_target"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:id="@+id/guide_item_target"
+        style="@style/CardListItemInner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true">
 
         <ImageView
-                android:id="@+id/guide_grid_item_thumbnail"
-                style="@style/GuideGridItemThumbnail"
-                android:layout_width="@dimen/guide_thumbnail_width"
-                android:layout_height="@dimen/guide_thumbnail_height"
-                android:layout_alignParentLeft="true"
-                android:contentDescription="@string/topic_guide_thumbnail"/>
+            android:id="@+id/guide_grid_item_thumbnail"
+            style="@style/GuideGridItemThumbnail"
+            android:layout_width="@dimen/guide_thumbnail_width"
+            android:layout_height="@dimen/guide_thumbnail_height"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/topic_guide_thumbnail"/>
 
         <TextView
-                android:id="@+id/guide_grid_item_title"
-                style="@style/GuideGridItemTitle"
+            android:id="@+id/guide_grid_item_title"
+            style="@style/GuideGridItemTitle"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/guide_grid_item_thumbnail"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/guide_grid_item_thumbnail"/>
+
+        <TextView
+            android:id="@+id/guide_locale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
