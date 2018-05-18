@@ -53,8 +53,6 @@ public abstract class BaseActivity extends AppCompatActivity {
    private Site mSite;
    private LoginFragment.GoogleSignInActivityResult mPendingGoogleSigninResult;
 
-   protected boolean mUserInteracting = false;
-
 
    /**
     * This is incredibly hacky. The issue is that Otto does not search for @Subscribed

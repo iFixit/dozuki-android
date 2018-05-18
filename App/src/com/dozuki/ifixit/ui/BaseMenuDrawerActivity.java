@@ -248,8 +248,7 @@ public abstract class BaseMenuDrawerActivity extends BaseActivity
       Site site = app.getSite();
       mDrawerList.inflateMenu(R.menu.drawer_view);
       mMenu = mDrawerList.getMenu();
-      mMenu.findItem(R.id.nav_browse_content).setTitle(
-       this.getString(R.string.slide_menu_browse_devices, site.getObjectNamePlural()));
+      mMenu.findItem(R.id.nav_browse_content).setTitle(getResources().getString(R.string.slide_menu_browse_content));
 
       int[] ids;
       if (site.isIfixit()) {

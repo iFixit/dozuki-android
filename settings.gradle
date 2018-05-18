@@ -1,1 +1,2 @@
-include ':App', ':progressbutton'
+include ':App', ':progressbutton', ':countryPicker'
+project(':countryPicker').projectDir = new File('App/libs/country-picker/app')

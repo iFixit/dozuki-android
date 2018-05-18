@@ -1,6 +1,5 @@
 package com.dozuki.ifixit.ui.topic;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,13 +7,9 @@ import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -300,6 +295,6 @@ public class TopicActivity extends BaseTopicActivity
 
    @Override
    public Intent getLanguageIntent() {
-      return new Intent();
+      return new Intent(TopicActivity.this, TopicActivity.class);
    }
 }

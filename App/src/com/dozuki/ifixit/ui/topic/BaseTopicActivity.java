@@ -6,19 +6,16 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.ui.BaseMenuDrawerActivity;
+import com.dozuki.ifixit.ui.LanguageDialogFragment;
 import com.dozuki.ifixit.ui.search.SearchActivity;
 import com.dozuki.ifixit.util.LocaleManager;
 
 public abstract class BaseTopicActivity extends BaseMenuDrawerActivity
- implements SearchView.OnQueryTextListener, AdapterView.OnItemSelectedListener {
+ implements SearchView.OnQueryTextListener, LanguageDialogFragment.OnLanguageSelectListener {
 
    protected Menu mMenu;
 
@@ -32,21 +29,19 @@ public abstract class BaseTopicActivity extends BaseMenuDrawerActivity
       SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
       searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-      MenuItem item = menu.findItem(R.id.spinner);
-      Spinner spinner = (Spinner) item.getActionView();
+      MenuItem item = menu.findItem(R.id.language_change);
       String[] languages = LocaleManager.getAvailableLanguages();
 
-      if (languages.length > 1) {
-         // Create an ArrayAdapter using the string array and a default spinner layout
-         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-          (this, R.layout.language_spinner_item, languages);
+      item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+         @Override
+         public boolean onMenuItemClick(MenuItem item) {
+            showCountryDialog();
+            return false;
+         }
+      });
 
-         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-         spinner.setAdapter(adapter);
-         spinner.setSelection(adapter.getPosition(LocaleManager.getLanguage(this)));
-         spinner.setOnItemSelectedListener(this);
-      } else {
-         spinner.setVisibility(View.GONE);
+      if (languages.length > 1) {
+         item.setVisible(true);
       }
 
       return true;
@@ -68,27 +63,21 @@ public abstract class BaseTopicActivity extends BaseMenuDrawerActivity
       return false;
    }
 
+   public abstract Intent getLanguageIntent();
+
    @Override
-   public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-      if (!mUserInteracting || view.getId() != R.id.language_spinner_item) {
-         mUserInteracting = true;
-         return;
-      }
+   public void onLanguageSelect(String languageCode) {
+      LocaleManager.setNewLocale(this, languageCode);
 
-      LocaleManager.setNewLocale(this, LocaleManager.getAvailableLanguages()[position]);
-
-      Intent i = this.getIntent();
+      Intent i = this.getLanguageIntent();
       i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
       startActivity(i);
 
       Toast.makeText(this, R.string.language_changed_toast, Toast.LENGTH_SHORT).show();
    }
 
-   @Override
-   public void onNothingSelected(AdapterView<?> parent) {
-
+   private void showCountryDialog() {
+      LanguageDialogFragment newFragment = LanguageDialogFragment.newInstance();
+      newFragment.show(getFragmentManager(), "dialog");
    }
-
-   public abstract Intent getLanguageIntent();
-
 }

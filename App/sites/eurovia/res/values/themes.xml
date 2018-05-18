@@ -17,7 +17,7 @@
 
         <!-- Theme Attributes -->
         <item name="doz__primaryHighlightColor">@color/accustream_primary</item>
-        <item name="doz__sectionHeader">@drawable/accustream__section_header</item>
+        <item name="doz__sectionHeader">@drawable/hyperthermtoolkit__section_header</item>
         <item name="doz__topicDefaultBackground">@style/Widget.HyperthermToolkit.TopicBackground</item>
 
         <item name="doz__navHeaderLogo">@drawable/logo</item>

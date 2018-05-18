@@ -1,9 +1,7 @@
 package com.dozuki.ifixit.ui.topic;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,16 +9,11 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NavUtils;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
@@ -79,29 +72,28 @@ public class TopicViewActivity extends BaseTopicActivity {
       mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
          @Override
          public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-            final Drawable upArrow, searchIcon;
-            int color;
+            final Drawable upArrow, searchIcon, languageIcon;
 
             // Appbar is collapsed
             if (verticalOffset == -mCollapsingToolbar.getHeight() + mToolbar.getHeight()) {
-               color = R.color.white;
-
                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp, getTheme());
                   searchIcon = getResources().getDrawable(R.drawable.ic_search_24dp, getTheme());
+                  languageIcon = getResources().getDrawable(R.drawable.ic_language_white_24dp, getTheme());
                } else {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp);
                   searchIcon = getResources().getDrawable(R.drawable.ic_search_24dp);
+                  languageIcon = getResources().getDrawable(R.drawable.ic_language_white_24dp);
                }
             } else {
-               color = R.color.black;
-
                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp, getTheme());
                   searchIcon = getResources().getDrawable(R.drawable.ic_search_black_24dp, getTheme());
+                  languageIcon = getResources().getDrawable(R.drawable.ic_language_black_24dp, getTheme());
                } else {
                   upArrow = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
                   searchIcon = getResources().getDrawable(R.drawable.ic_search_black_24dp);
+                  languageIcon = getResources().getDrawable(R.drawable.ic_language_black_24dp);
                }
             }
 
@@ -109,21 +101,7 @@ public class TopicViewActivity extends BaseTopicActivity {
 
             if (mMenu != null) {
                mMenu.findItem(R.id.action_search).setIcon(searchIcon);
-
-               MenuItem item = mMenu.findItem(R.id.spinner);
-               Spinner spinner = (Spinner) item.getActionView();
-
-               ((TextView) spinner.getChildAt(0)).setTextColor(getResources().getColor(color));
-
-               Drawable spinnerDrawable = spinner.getBackground().getConstantState().newDrawable();
-
-               spinnerDrawable.setColorFilter(getResources().getColor(color), PorterDuff.Mode.SRC_ATOP);
-
-               if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                  spinner.setBackground(spinnerDrawable);
-               } else {
-                  spinner.setBackgroundDrawable(spinnerDrawable);
-               }
+               mMenu.findItem(R.id.language_change).setIcon(languageIcon);
             }
          }
       });
@@ -143,7 +121,6 @@ public class TopicViewActivity extends BaseTopicActivity {
       Bundle bundle;
       mTopicName = "";
       String topicTitle = "";
-
 
       if (mTopicNode != null) {
          mTopicName = mTopicNode.getDisplayName();
@@ -198,17 +175,6 @@ public class TopicViewActivity extends BaseTopicActivity {
    }
 
    @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-      getMenuInflater().inflate(R.menu.topic_list_menu, menu);
-      // Retrieve the SearchView and plug it into SearchManager
-      final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-      SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-      searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-      return true;
-   }
-
-   @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          // Respond to the action bar's Up/Home button
@@ -248,9 +214,8 @@ public class TopicViewActivity extends BaseTopicActivity {
 
    @Override
    public Intent getLanguageIntent() {
-      Intent i = new Intent();
+      Intent i = new Intent(TopicViewActivity.this, TopicViewActivity.class);
       i.putExtra(TOPIC_NAME_KEY, mTopicName);
-
       return i;
    }
 }

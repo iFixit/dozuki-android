@@ -99,8 +99,8 @@ public class TopicListFragment extends BaseFragment
 
       if (App.get().getSite().isIfixit()) {
          if (nonLeaves.size() > 0) {
-            adapter = new TopicListAdapter(mContext, mContext.getString(
-             R.string.categories), nonLeaves);
+            adapter = new TopicListAdapter(mContext, mContext.getString(R.string.categories),
+             nonLeaves);
             adapter.setTopicSelectedListener(this);
             mTopicAdapter.addSection(adapter);
          }
@@ -108,12 +108,12 @@ public class TopicListFragment extends BaseFragment
          if (leaves.size() > 0) {
             App app = (App)getActivity().getApplication();
 
-            adapter = new TopicListAdapter(mContext, app.getSite().getObjectName(), leaves);
+            adapter = new TopicListAdapter(mContext, mContext.getString(R.string.category), leaves);
             adapter.setTopicSelectedListener(this);
             mTopicAdapter.addSection(adapter);
          }
       } else {
-         adapter = new TopicListAdapter(mContext, App.get().getSite().getObjectNamePlural(),
+         adapter = new TopicListAdapter(mContext, mContext.getString(R.string.categories),
           mTopic.getChildren());
          adapter.setTopicSelectedListener(this);
          mTopicAdapter.addSection(adapter);

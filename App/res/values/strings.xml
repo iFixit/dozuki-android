@@ -13,6 +13,8 @@
     <string name="confirm_delete_title">Confirm Delete</string>
     <string name="confirm_delete_body">Deleting a guide CANNOT be undone. Are you sure you want to delete
         <xliff:g example="Repairing iPhone 4 Guide" id="confirm_delete_guide_name">\"%1$s\"</xliff:g>?</string>
+    <string name="country">Country</string>
+    <string name="dialog_title_country">Select country</string>
 
     <!-- Error Messages -->
     <string name="parse_error_title">Well, this is embarrassing</string>
@@ -380,4 +382,8 @@
     <string name="attached_documents">Attached Documents</string>
     <string name="language_select">Language Select</string>
     <string name="language_changed_toast">Language Changed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="select_language">Select Language</string>
 </resources>

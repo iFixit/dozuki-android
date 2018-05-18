@@ -162,6 +162,8 @@ public class Site implements Serializable {
          return R.style.Theme_Aristocrat_TransparentActionBar;
       } else if (isAccustream()) {
          return R.style.Theme_Accustream_TransparentActionBar;
+      } else if (isHyperthermToolkit()) {
+         return R.style.Theme_HyperthermToolkit_TransparentActionBar;
       } else {
          // We don't have a custom theme for the site - check for generic theme.
          if (mTheme.equals("custom")) {
@@ -231,7 +233,7 @@ public class Site implements Serializable {
       if (siteName.equals("ifixit")) {
          site = new Site(2);
          site.mName = "ifixit";
-         site.mAvailableLanguages = new String[]{"en", "de", "fr"};
+         site.mAvailableLanguages = new String[]{"en", "de", "fr", "ja", "ru", "zh-rCN", "ko", "it", "nl", "pt-rBR", "pt-rPT"};
          site.mDomain = "www.ifixit.com";
          site.mTitle = "iFixit";
          site.mTheme = "custom";
@@ -369,11 +371,12 @@ public class Site implements Serializable {
          site.mDomain = "hyperthermtoolkit.dozuki.com";
          site.mTitle = "Hypertherm Toolkit";
          site.mTheme = "custom";
+         site.mAvailableLanguages = new String[]{"en", "de", "fr", "ja", "ru", "zh-rCN", "ko", "it", "nl", "pt-rBR", "pt-rPT"};
          site.mPublic = false;
          site.mAnswers = false;
          site.mDescription = "";
-         site.mStandardAuth = true;
-         site.mSsoUrl = null;
+         site.mStandardAuth = false;
+         site.mSsoUrl = "https://xnet.hypertherm.com/Xnet/dozukisso.jsp";
          site.mPublicRegistration = false;
          site.mObjectNamePlural = res.getString(R.string.categories);
          site.mObjectNameSingular = res.getString(R.string.category);
