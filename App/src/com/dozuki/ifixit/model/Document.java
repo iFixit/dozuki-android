@@ -16,6 +16,17 @@ public class Document implements Serializable {
    public String url;
    @SerializedName("documentid")
    public int id;
+   public int wikiid;
+   public long date;
+   public long size;
+   public int pages;
+   public String filename;
+   public String title;
+   public String guid;
+
+   public String getTitle() {
+      return title != null ? title : text != null ? text : filename;
+   }
 
    public String getFullUrl() {
       Site site = App.get().getSite();

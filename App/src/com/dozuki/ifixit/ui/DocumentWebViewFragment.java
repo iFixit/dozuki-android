@@ -1,4 +1,4 @@
-package com.dozuki.ifixit.ui.guide;
+package com.dozuki.ifixit.ui;
 
 import android.content.Intent;
 import android.os.Build;
@@ -18,8 +18,6 @@ import com.dozuki.ifixit.BuildConfig;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.dozuki.Site;
 import com.dozuki.ifixit.model.guide.OnViewGuideListener;
-import com.dozuki.ifixit.ui.BaseFragment;
-import com.dozuki.ifixit.ui.BaseWebViewClient;
 import com.dozuki.ifixit.ui.guide.view.GuideViewActivity;
 
 import okhttp3.HttpUrl;

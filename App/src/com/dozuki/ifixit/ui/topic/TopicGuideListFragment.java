@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.dozuki.ifixit.R;
-import com.dozuki.ifixit.model.guide.Guide;
 import com.dozuki.ifixit.model.guide.GuideInfo;
 import com.dozuki.ifixit.model.topic.TopicLeaf;
 import com.dozuki.ifixit.ui.BaseFragment;
 import com.dozuki.ifixit.ui.EndlessRecyclerViewScrollListener;
 import com.dozuki.ifixit.ui.GuideListRecyclerAdapter;
+import com.dozuki.ifixit.util.LocaleManager;
 
 import java.util.ArrayList;
 
@@ -62,13 +62,14 @@ public class TopicGuideListFragment extends BaseFragment {
       ArrayList<GuideInfo> guides = new ArrayList<>();
 
       boolean hasFeaturedGuides = mTopicLeaf.getFeaturedGuides().size() > 0;
-      if (guides.size() == 0 && hasFeaturedGuides) {
-         guides = mTopicLeaf.getFeaturedGuides();
-      } else if (hasFeaturedGuides) {
+
+      if (hasFeaturedGuides && mTopicLeaf.getGuides().size() == 0) {
          guides.addAll(mTopicLeaf.getFeaturedGuides());
       }
 
-      guides.addAll(mTopicLeaf.getGuides());
+      mGuides = mTopicLeaf.getDisplayGuides(LocaleManager.getLanguage(getContext()));
+
+      guides.addAll(mGuides);
 
       mRecycleAdapter = new GuideListRecyclerAdapter(guides, false);
       mRecycleView.setAdapter(mRecycleAdapter);

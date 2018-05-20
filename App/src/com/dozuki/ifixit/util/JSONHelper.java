@@ -418,31 +418,36 @@ public class JSONHelper {
     * Topic leaf parsing
     */
    public static TopicLeaf parseTopicLeaf(String json) throws JSONException {
-
+      int i;
       JSONObject jTopic = new JSONObject(json);
       JSONArray jGuides = jTopic.getJSONArray("guides");
       JSONArray jWikis = jTopic.getJSONArray("related_wikis");
+      JSONArray jDocuments = jTopic.getJSONArray("documents");
       TopicLeaf topicLeaf = new TopicLeaf(jTopic.getString("title"));
       JSONArray jFeaturedGuides = jTopic.getJSONArray("featured_guides");
 
-      for (int i = 0; i < jFeaturedGuides.length(); i++) {
+      for (i = 0; i < jFeaturedGuides.length(); i++) {
          String guideJson = jFeaturedGuides.getJSONObject(i).toString();
          GuideInfo guide = new Gson().fromJson(guideJson, GuideInfo.class);
          topicLeaf.addFeaturedGuide(guide);
       }
 
-
-      for (int i = 0; i < jGuides.length(); i++) {
+      for (i = 0; i < jGuides.length(); i++) {
          String guideJson = jGuides.getJSONObject(i).toString();
          GuideInfo guide = new Gson().fromJson(guideJson, GuideInfo.class);
          topicLeaf.addGuide(guide);
       }
 
-      for (int i = 0; i < jWikis.length(); i++) {
+      for (i = 0; i < jWikis.length(); i++) {
          String wikiJson = jWikis.getJSONObject(i).toString();
-         Log.d("dozuki", wikiJson);
          Wiki wiki = new Gson().fromJson(wikiJson, Wiki.class);
          topicLeaf.addWiki(wiki);
+      }
+
+      for (i = 0; i < jDocuments.length(); i++) {
+         String documentsJson = jDocuments.getJSONObject(i).toString();
+         Document document = new Gson().fromJson(documentsJson, Document.class);
+         topicLeaf.addDocument(document);
       }
 
       topicLeaf.setSolutionsUrl(jTopic.getString("solutions_url"));

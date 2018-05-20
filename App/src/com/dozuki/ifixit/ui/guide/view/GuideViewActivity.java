@@ -435,7 +435,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
           WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
       }
 
-      mAdapter = new GuideViewAdapter(getSupportFragmentManager(), mGuide,
+      mAdapter = new GuideViewAdapter(getSupportFragmentManager(), this, mGuide,
        mIsOfflineGuide);
 
       mPager.setAdapter(mAdapter);

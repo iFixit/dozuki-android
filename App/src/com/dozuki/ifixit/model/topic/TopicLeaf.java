@@ -1,24 +1,25 @@
 package com.dozuki.ifixit.model.topic;
 
-import android.content.res.Resources;
 import android.text.Html;
 import android.text.Spanned;
-import android.widget.TextView;
 
+import com.dozuki.ifixit.model.Document;
 import com.dozuki.ifixit.model.Flag;
 import com.dozuki.ifixit.model.Image;
 import com.dozuki.ifixit.model.Item;
 import com.dozuki.ifixit.model.Wiki;
 import com.dozuki.ifixit.model.guide.GuideInfo;
-import com.dozuki.ifixit.util.PicassoImageGetter;
 import com.dozuki.ifixit.util.Utils;
 import com.dozuki.ifixit.util.WikiHtmlTagHandler;
 
 import org.json.JSONArray;
 
 import java.io.Serializable;
-import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 
 public class TopicLeaf implements Serializable {
    private static final long serialVersionUID = 1L;
@@ -30,6 +31,7 @@ public class TopicLeaf implements Serializable {
    private ArrayList<Flag> mFlags = new ArrayList<>();
    private ArrayList<GuideInfo> mGuides = new ArrayList<>();
    private ArrayList<GuideInfo> mFeaturedGuides = new ArrayList<>();
+   private ArrayList<Document> mDocuments = new ArrayList<>();
    private String mSolutionsUrl;
    private ArrayList<Item> mParts = new ArrayList<>();
    private ArrayList<Item> mTools = new ArrayList<>();
@@ -40,6 +42,22 @@ public class TopicLeaf implements Serializable {
 
    public TopicLeaf(String name) {
       mName = name;
+   }
+
+
+   public void addDocument(Document document) {
+      mDocuments.add(document);
+   }
+
+   public ArrayList<Document> getDocuments() {
+      Collections.sort(mDocuments, new Comparator<Document>() {
+         @Override
+         public int compare(Document d1, Document d2) {
+            return d1.getTitle().compareToIgnoreCase(d2.getTitle());
+         }
+      });
+
+      return mDocuments;
    }
 
    public void addFeaturedGuide(GuideInfo guideInfo) {
@@ -64,6 +82,38 @@ public class TopicLeaf implements Serializable {
 
    public ArrayList<GuideInfo> getGuides() {
       return mGuides;
+   }
+
+   /**
+    * All the guides that should be displayed in the topic list.
+    * Filters out Archived guides, and sorts with the display language first.
+    *
+    * @return
+    */
+   public ArrayList<GuideInfo> getDisplayGuides(final String displayLocale) {
+      ArrayList<GuideInfo> result = new ArrayList<>(mGuides);
+
+      for (Iterator<GuideInfo> it = result.iterator(); it.hasNext(); ) {
+         GuideInfo current = it.next();
+         if (Arrays.asList(current.mFlags).contains("GUIDE_ARCHIVED") ||
+          mFeaturedGuides.contains(current)) {
+            it.remove();
+         }
+      }
+
+      Collections.sort(result, new Comparator<GuideInfo>() {
+         @Override
+         public int compare(GuideInfo g1, GuideInfo g2) {
+            if (g2.mLocale.equalsIgnoreCase(displayLocale)) {
+               return 1;
+            }
+
+            return g1.mLocale.equalsIgnoreCase(g2.mLocale)
+             ? 0 : -1;
+         }
+      });
+
+      return result;
    }
 
    public ArrayList<Wiki> getRelatedWikis() {
@@ -116,7 +166,7 @@ public class TopicLeaf implements Serializable {
 
    public boolean equals(Object other) {
       return other instanceof TopicLeaf &&
-       ((TopicLeaf)other).getName().equals(mName);
+       ((TopicLeaf) other).getName().equals(mName);
    }
 
    public void setLocale(String locale) {

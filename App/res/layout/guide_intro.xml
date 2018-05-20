@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"/>
 
         <View
@@ -55,33 +56,6 @@
             style="@style/BodyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-
-        <LinearLayout
-            android:id="@+id/guide_documents_container"
-            android:visibility="gone"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
-            <TextView
-                android:text="@string/attached_documents"
-                style="@style/TopicHeaderRow.Background"/>
-
-            <View
-                android:background="?dividerHorizontal"
-                android:layout_height="1dp"
-                android:layout_width="match_parent"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:scrollbars="vertical"
-                android:id="@+id/guide_documents"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingRight="16dp"
-                android:paddingLeft="16dp" />
-
-        </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:visibility="gone"

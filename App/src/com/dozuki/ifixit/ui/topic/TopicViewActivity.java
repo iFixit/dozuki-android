@@ -97,12 +97,18 @@ public class TopicViewActivity extends BaseTopicActivity {
                }
             }
 
-            getSupportActionBar().setHomeAsUpIndicator(upArrow);
+            mAppBar.post(new Runnable() {
+               @Override
+               public void run() {
 
-            if (mMenu != null) {
-               mMenu.findItem(R.id.action_search).setIcon(searchIcon);
-               mMenu.findItem(R.id.language_change).setIcon(languageIcon);
-            }
+                  getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
+                  if (mMenu != null) {
+                     mMenu.findItem(R.id.action_search).setIcon(searchIcon);
+                     mMenu.findItem(R.id.language_change).setIcon(languageIcon);
+                  }
+               }
+            });
          }
       });
 

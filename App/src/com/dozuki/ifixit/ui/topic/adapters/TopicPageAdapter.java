@@ -14,6 +14,7 @@ import com.dozuki.ifixit.model.dozuki.Site;
 import com.dozuki.ifixit.model.topic.TopicLeaf;
 import com.dozuki.ifixit.ui.WebViewFragment;
 import com.dozuki.ifixit.ui.guide.view.NoGuidesFragment;
+import com.dozuki.ifixit.ui.topic.DocumentListFragment;
 import com.dozuki.ifixit.ui.topic.TopicGuideListFragment;
 import com.dozuki.ifixit.ui.topic.TopicInfoFragment;
 import com.dozuki.ifixit.ui.topic.TopicRelatedWikisFragment;
@@ -30,12 +31,16 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
 
    private static final int GUIDES_TAB = 0;
    private static final int MORE_INFO_TAB = 1;
-   private static final int ANSWERS_TAB = 2;
-   private static final int RELATED_WIKIS_TAB = 3;
+   private static final int DOCUMENTS_TAB = 2;
+   private static final int ANSWERS_TAB = 3;
+   private static final int RELATED_WIKIS_TAB = 4;
+
    private static final String CURRENT_PAGE = "CURRENT_PAGE";
    private static final String CURRENT_TOPIC_LEAF = "CURRENT_TOPIC_LEAF";
    private static final String CURRENT_TOPIC_NODE = "CURRENT_TOPIC_NODE";
    private int mSelectedTab;
+
+   private int mCount = 3;
 
    public TopicPageAdapter(FragmentManager fm, Context context, TopicLeaf topic) {
       super(fm);
@@ -43,21 +48,19 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
       mTopic = topic;
       mSite = App.get().getSite();
       mPageLabelMap = new HashMap<Integer, String>();
+
+      if (mSite.mAnswers) {
+         mCount++;
+      }
+
+      if (mTopic.getRelatedWikis().size() > 0) {
+         mCount++;
+      }
    }
 
    @Override
    public int getCount() {
-      int base = 2;
-
-      if (mSite.mAnswers) {
-         base++;
-      }
-
-      if (mTopic.getRelatedWikis().size() > 0) {
-         base++;
-      }
-
-      return base;
+      return mCount;
    }
 
    @Override
@@ -68,6 +71,9 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
 
          case MORE_INFO_TAB:
             return mContext.getString(R.string.info);
+
+         case DOCUMENTS_TAB:
+            return mContext.getString(R.string.documents);
 
          case RELATED_WIKIS_TAB:
          case ANSWERS_TAB:
@@ -95,7 +101,6 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
                args.putSerializable(TopicGuideListFragment.TOPIC_LEAF_KEY, mTopic);
                selectedFragment.setArguments(args);
             }
-            mSelectedTab = GUIDES_TAB;
             label += "/guides";
             break;
          case MORE_INFO_TAB:
@@ -103,6 +108,13 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
             args.putSerializable(TopicInfoFragment.TOPIC_KEY, mTopic);
             selectedFragment.setArguments(args);
             label += "/info";
+
+            break;
+         case DOCUMENTS_TAB:
+            selectedFragment = new DocumentListFragment();
+            args.putSerializable(DocumentListFragment.ITEMS_KEY, mTopic.getDocuments());
+            selectedFragment.setArguments(args);
+            label += "/documents";
 
             break;
          case ANSWERS_TAB:
@@ -116,7 +128,6 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
                label += "/answers";
 
                selectedFragment = webView;
-
             } else {
                selectedFragment = new TopicRelatedWikisFragment();
                args.putSerializable(TopicRelatedWikisFragment.TOPIC_LEAF_KEY, mTopic);
@@ -124,12 +135,12 @@ public class TopicPageAdapter extends FragmentStatePagerAdapter {
                label += "/related_pages";
             }
 
-            mSelectedTab = position;
             break;
          default:
             return null;
       }
 
+      mSelectedTab = position;
       mPageLabelMap.put(position, label);
 
       return selectedFragment;

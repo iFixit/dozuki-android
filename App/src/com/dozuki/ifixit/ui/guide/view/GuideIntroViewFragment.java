@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
@@ -24,14 +22,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.dozuki.ifixit.R;
-import com.dozuki.ifixit.model.Document;
 import com.dozuki.ifixit.model.guide.Guide;
 import com.dozuki.ifixit.ui.BaseFragment;
-import com.dozuki.ifixit.ui.DocumentListAdapter;
 import com.dozuki.ifixit.util.Utils;
 import com.dozuki.ifixit.util.WikiHtmlTagHandler;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -74,22 +69,12 @@ public class GuideIntroViewFragment extends BaseFragment {
       TextView mDifficulty = (TextView) view.findViewById(R.id.guide_difficulty);
       TextView mAuthor = (TextView) view.findViewById(R.id.guide_author);
 
-      RecyclerView docList = (RecyclerView) view.findViewById(R.id.guide_documents);
       MovementMethod method = LinkMovementMethod.getInstance();
 
       mIntro.setMovementMethod(method);
 
       if (mGuide != null) {
          mTitle.setText(mGuide.getTitle());
-         ArrayList<Document> documents = mGuide.getDocuments();
-
-         if (documents.size() > 0) {
-            RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
-            docList.setLayoutManager(lm);
-            DocumentListAdapter adapter = new DocumentListAdapter(mGuide.getDocuments());
-            docList.setAdapter(adapter);
-            view.findViewById(R.id.guide_documents_container).setVisibility(View.VISIBLE);
-         }
 
          String introductionText = mGuide.getIntroductionRendered();
 

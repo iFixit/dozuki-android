@@ -13,7 +13,6 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.dozuki.ifixit.App;
@@ -174,10 +173,16 @@ public class WebViewFragment extends BaseFragment implements OnViewGuideListener
          String[] pieces = url.split("/");
          int guideid;
 
+         Uri uri = Uri.parse(url);
+         // Get the root url, without language subdomains
+         String serverName = uri.getHost().replaceAll(".*\\.(?=.*\\.)", "");
+         String siteDomain = mSite.mDomain.replaceAll(".*\\.(?=.*\\.)", "");
+
+         Log.d("WebView", serverName + " : " + siteDomain);
          if (url.startsWith("^(http|https)://" + mSite.mDomain + "/Guide/login")) {
             url = mUrl;
-         } else if (!Uri.parse(url).getHost().equals(mSite.mDomain)) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+         } else if (!serverName.equals(siteDomain)) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
          } else {

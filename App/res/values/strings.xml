@@ -382,8 +382,5 @@
     <string name="attached_documents">Attached Documents</string>
     <string name="language_select">Language Select</string>
     <string name="language_changed_toast">Language Changed</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_language">Select Language</string>
 </resources>

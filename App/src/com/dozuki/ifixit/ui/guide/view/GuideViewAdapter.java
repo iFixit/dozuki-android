@@ -1,5 +1,6 @@
 package com.dozuki.ifixit.ui.guide.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FixedFragmentStatePagerAdapter;
 import android.support.v4.app.Fragment;
@@ -9,8 +10,8 @@ import android.view.View;
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.guide.Guide;
-import com.dozuki.ifixit.ui.WebViewFragment;
-import com.dozuki.ifixit.ui.guide.DocumentWebViewFragment;
+import com.dozuki.ifixit.ui.DocumentWebViewFragment;
+import com.dozuki.ifixit.ui.topic.DocumentListFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class GuideViewAdapter extends FixedFragmentStatePagerAdapter {
    private static final int GUIDE_INTRO_POSITION = 0;
    private static final int GUIDE_CONCLUSION_OFFSET = 1;
+   private Context mContext;
    private Map<Integer, String> mPageLabelMap;
 
    private int mStepOffset = 1;
@@ -28,19 +30,26 @@ public class GuideViewAdapter extends FixedFragmentStatePagerAdapter {
    private int mPartsPosition = -1;
    private int mConclusionPosition = -1;
    private int mFeaturedDocumentPosition = -1;
+   private int mDocumentPosition = -1;
 
    private Guide mGuide;
    private boolean mIsOfflineGuide;
 
-   public GuideViewAdapter(FragmentManager fm, Guide guide, boolean isOfflineGuide) {
+   public GuideViewAdapter(FragmentManager fm, Context context, Guide guide, boolean isOfflineGuide) {
       super(fm);
       mGuide = guide;
       mIsOfflineGuide = isOfflineGuide;
+      mContext = context;
 
       mPageLabelMap = new HashMap<Integer, String>();
 
       if (mGuide.getFeaturedDocument() != null) {
          mFeaturedDocumentPosition = mStepOffset;
+         mStepOffset++;
+      }
+
+      if (guideHasDocuments()) {
+         mDocumentPosition = mStepOffset;
          mStepOffset++;
       }
 
@@ -82,6 +91,13 @@ public class GuideViewAdapter extends FixedFragmentStatePagerAdapter {
          fragment = new GuideIntroViewFragment();
          Bundle args = new Bundle();
          args.putSerializable(GuideIntroViewFragment.GUIDE_KEY, mGuide);
+         fragment.setArguments(args);
+      } else if (position == mDocumentPosition) {
+         label += "/guide-documents";
+
+         fragment = new DocumentListFragment();
+         Bundle args = new Bundle();
+         args.putSerializable(DocumentListFragment.ITEMS_KEY, mGuide.getDocuments());
          fragment.setArguments(args);
       } else if (position == mFeaturedDocumentPosition) {
          label += "/featured-document";
@@ -129,22 +145,28 @@ public class GuideViewAdapter extends FixedFragmentStatePagerAdapter {
    @Override
    public CharSequence getPageTitle(int position) {
       if (position == GUIDE_INTRO_POSITION) {
-         return App.get().getString(R.string.introduction);
+         return mContext.getResources().getString(R.string.introduction);
       } else if (position == mFeaturedDocumentPosition) {
-         return "Featured Documents";
+         return mContext.getResources().getString(R.string.featured_document);
+      } else if (position == mDocumentPosition) {
+         return mContext.getResources().getString(R.string.attached_documents);
       } else if (position == mToolsPosition) {
-         return App.get().getString(R.string.requiredTools);
+         return mContext.getResources().getString(R.string.requiredTools);
       } else if (position == mPartsPosition) {
-         return App.get().getString(R.string.requiredParts);
+         return mContext.getResources().getString(R.string.requiredParts);
       } else if (position == mConclusionPosition) {
-         return App.get().getString(R.string.conclusion);
+         return mContext.getResources().getString(R.string.conclusion);
       } else {
-         return App.get().getString(R.string.step_number, (position - mStepOffset) + 1);
+         return mContext.getResources().getString(R.string.step_number, (position - mStepOffset) + 1);
       }
    }
 
    public int getStepOffset() {
       return mStepOffset;
+   }
+
+   private boolean guideHasDocuments() {
+      return mGuide.getDocuments().size() != 0;
    }
 
    private boolean guideHasTools() {
