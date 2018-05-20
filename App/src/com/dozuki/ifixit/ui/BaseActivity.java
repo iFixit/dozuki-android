@@ -351,7 +351,9 @@ public abstract class BaseActivity extends AppCompatActivity {
       // Finish if the site is private or activity requires authentication.
       if ((currentUserid == LOGGED_OUT_USERID || currentUserid != mUserid) &&
        (finishActivityIfLoggedOut() || !app.getSite().mPublic)) {
+         Intent intent = getIntent();
          finish();
+         startActivity(intent);
       }
    }
 
