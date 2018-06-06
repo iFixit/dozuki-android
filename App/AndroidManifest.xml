@@ -75,6 +75,8 @@
         <activity android:name=".ui.guide.CommentsActivity"
                   android:windowSoftInputMode="adjustPan"/>
 
+        <activity android:name=".ui.DocumentViewActivity"/>
+
         <activity android:name=".ui.gallery.GalleryActivity"/>
         <activity
             android:name=".ui.guide.create.GuideIntroActivity"

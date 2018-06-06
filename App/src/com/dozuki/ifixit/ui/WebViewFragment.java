@@ -178,7 +178,6 @@ public class WebViewFragment extends BaseFragment implements OnViewGuideListener
          String serverName = uri.getHost().replaceAll(".*\\.(?=.*\\.)", "");
          String siteDomain = mSite.mDomain.replaceAll(".*\\.(?=.*\\.)", "");
 
-         Log.d("WebView", serverName + " : " + siteDomain);
          if (url.startsWith("^(http|https)://" + mSite.mDomain + "/Guide/login")) {
             url = mUrl;
          } else if (!serverName.equals(siteDomain)) {

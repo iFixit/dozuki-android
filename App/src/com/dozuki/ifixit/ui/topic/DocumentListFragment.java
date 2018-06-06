@@ -47,7 +47,7 @@ public class DocumentListFragment extends BaseFragment {
 
       mRecycleView.setLayoutManager(mLayoutManager);
 
-      RecyclerView.Adapter mRecycleAdapter = new DocumentListAdapter(mItems);
+      RecyclerView.Adapter mRecycleAdapter = new DocumentListAdapter(getActivity(), mItems);
       mRecycleView.setAdapter(mRecycleAdapter);
 
       return view;
