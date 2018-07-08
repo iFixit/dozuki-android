@@ -67,6 +67,8 @@
 
     <style name="Theme.HyperthermToolkit" parent="Theme.Base"></style>
 
+    <style name="Theme.Eurovia" parent="Theme.Base"></style>
+
     <style name="Theme.Aristocrat" parent="Theme.Base"></style>
 
     <style name="Theme.DripAssist" parent="Theme.Base"></style>
@@ -87,7 +89,9 @@
 
     <style name="Theme.Dozuki.White" parent="Theme.Base"></style>
 
-    <style name="Theme.Aristocrat.TransparentActionBar" parent="Theme.CharlesSmith"></style>
+    <style name="Theme.Eurovia.TransparentActionBar" parent="Theme.Eurovia"></style>
+
+    <style name="Theme.Aristocrat.TransparentActionBar" parent="Theme.Aristocrat"></style>
 
     <style name="Theme.CharlesSmith.TransparentActionBar" parent="Theme.CharlesSmith"></style>
 

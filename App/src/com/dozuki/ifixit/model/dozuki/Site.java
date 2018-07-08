@@ -164,6 +164,8 @@ public class Site implements Serializable {
          return R.style.Theme_Accustream_TransparentActionBar;
       } else if (isHyperthermToolkit()) {
          return R.style.Theme_HyperthermToolkit_TransparentActionBar;
+      } else if (isEurovia()) {
+         return R.style.Theme_Eurovia_TransparentActionBar;
       } else {
          // We don't have a custom theme for the site - check for generic theme.
          if (mTheme.equals("custom")) {
@@ -203,6 +205,8 @@ public class Site implements Serializable {
          return R.style.Theme_Aristocrat;
       } else if (isHyperthermToolkit()) {
          return R.style.Theme_HyperthermToolkit;
+      } else if (isEurovia()) {
+         return R.style.Theme_Eurovia;
       } else {
          // We don't have a custom theme for the site - check for generic theme.
          if (mTheme.equals("custom")) {
@@ -371,12 +375,27 @@ public class Site implements Serializable {
          site.mDomain = "hyperthermtoolkit.dozuki.com";
          site.mTitle = "Hypertherm Toolkit";
          site.mTheme = "custom";
-         site.mAvailableLanguages = new String[]{"en", "de", "fr", "ja", "ru", "zh-rCN", "ko", "it", "nl", "pt-rBR", "pt-rPT"};
+         site.mAvailableLanguages = new String[]{"en", "de", "fr", "ja", "ru", "es", "zh-rCN", "ko", "it", "nl", "pt-rBR", "pt-rPT"};
          site.mPublic = false;
          site.mAnswers = false;
          site.mDescription = "";
          site.mStandardAuth = false;
          site.mSsoUrl = "https://xnet.hypertherm.com/Xnet/dozukisso.jsp";
+         site.mPublicRegistration = false;
+         site.mObjectNamePlural = res.getString(R.string.categories);
+         site.mObjectNameSingular = res.getString(R.string.category);
+      } else if (siteName.equals("eurovia")) {
+         site = new Site(3815);
+         site.mName = "eurovia";
+         site.mDomain = "eurovia.dozuki.com";
+         site.mTitle = "Eurovia";
+         site.mTheme = "custom";
+         site.mAvailableLanguages = new String[]{"fr", "en", "de", "es"};
+         site.mPublic = false;
+         site.mAnswers = false;
+         site.mDescription = "";
+         site.mStandardAuth = false;
+         site.mSsoUrl = "http://eurovia.dozuki.com/Login";
          site.mPublicRegistration = false;
          site.mObjectNamePlural = res.getString(R.string.categories);
          site.mObjectNameSingular = res.getString(R.string.category);
@@ -399,6 +418,10 @@ public class Site implements Serializable {
 
    public boolean actionBarUsesIcon() {
       return isAccustream() || isIfixit() || isDripAssist() || isPVA() || isOscaro() || isPepsi() || isAristocrat();
+   }
+
+   public boolean isEurovia() {
+      return mName.equals("eurovia");
    }
 
    public boolean isAristocrat() {

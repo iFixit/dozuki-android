@@ -3,22 +3,22 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.HyperthermToolkit.TransparentActionBar" parent="Theme.HyperthermToolkit">
+    <style name="Theme.Eurovia.TransparentActionBar" parent="Theme.Eurovia">
         <item name="windowActionBarOverlay">true</item>
         <item name="android:windowActionBarOverlay">true</item>
     </style>
 
-    <style name="Theme.HyperthermToolkit" parent="Theme.Base">
+    <style name="Theme.Eurovia" parent="Theme.Base">
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryDark">@color/black_alpha_40</item>
-        <item name="colorAccent">@color/accustream_primary</item>
-        <item name="colorAccentDark">@color/accustream_primary_dark</item>
+        <item name="colorAccent">@color/eurovia_primary</item>
+        <item name="colorAccentDark">@color/eurovia_primary_dark</item>
         <item name="colorButtonNormal">@color/white</item>
 
         <!-- Theme Attributes -->
-        <item name="doz__primaryHighlightColor">@color/accustream_primary</item>
-        <item name="doz__sectionHeader">@drawable/hyperthermtoolkit__section_header</item>
-        <item name="doz__topicDefaultBackground">@style/Widget.HyperthermToolkit.TopicBackground</item>
+        <item name="doz__primaryHighlightColor">@color/eurovia_primary</item>
+        <item name="doz__sectionHeader">@drawable/eurovia__section_header</item>
+        <item name="doz__topicDefaultBackground">@style/Widget.Eurovia.TopicBackground</item>
 
         <item name="doz__navHeaderLogo">@drawable/logo</item>
     </style>

@@ -3,9 +3,9 @@
 <!-- Generated with http://android-holo-colors.com -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Widget.HyperthermToolkit"></style>
+    <style name="Widget.Eurovia"></style>
 
-    <style name="Widget.HyperthermToolkit.TopicBackground" parent="Widget.HyperthermToolkit">
+    <style name="Widget.Eurovia.TopicBackground" parent="Widget.Eurovia">
         <item name="android:visibility">gone</item>
     </style>
 

@@ -38,6 +38,19 @@
 
                 <data android:scheme="http"  android:host="eurovia.dozuki.com" android:pathPrefix="/c/"/>
                 <data android:scheme="https" android:host="eurovia.dozuki.com" android:pathPrefix="/c/"/>
+
+                <data android:scheme="http"  android:host="howto.eurovia.com" android:pathPrefix="/Guide/"/>
+                <data android:scheme="https" android:host="howto.eurovia.com" android:pathPrefix="/Guide/"/>
+                <data android:scheme="http"  android:host="howto.eurovia.com" android:pathPrefix="/Teardown/"/>
+                <data android:scheme="https" android:host="howto.eurovia.com" android:pathPrefix="/Teardown/"/>
+
+                <data android:scheme="http"  android:host="howto.eurovia.com" android:pathPrefix="/guide/"/>
+                <data android:scheme="https" android:host="howto.eurovia.com" android:pathPrefix="/guide/"/>
+                <data android:scheme="http"  android:host="howto.eurovia.com" android:pathPrefix="/teardown/"/>
+                <data android:scheme="https" android:host="howto.eurovia.com" android:pathPrefix="/teardown/"/>
+
+                <data android:scheme="http"  android:host="howto.eurovia.com" android:pathPrefix="/c/"/>
+                <data android:scheme="https" android:host="howto.eurovia.com" android:pathPrefix="/c/"/>
             </intent-filter>
         </activity>
 

@@ -55,7 +55,7 @@ dependencies {
 }
 
 // List of sites used to create signingConfigs, sourceSets, and productFlavors.
-def sites = ["ifixit", "dozuki", "accustream", "dripassist", "pva", "oscaro", "charlessmith", "aristocrat", "hyperthermtoolkit"]
+def sites = ["ifixit", "dozuki", "accustream", "dripassist", "pva", "oscaro", "charlessmith", "aristocrat", "hyperthermtoolkit", "eurovia"]
 
 android {
     compileSdkVersion 27
