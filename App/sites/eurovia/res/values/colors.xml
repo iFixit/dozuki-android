@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="eurovia_primary">#ff014289</color>
-    <color name="eurovia_primary_dark">#55014289</color>
+    <color name="eurovia_primary">#ff00418c</color>
+    <color name="eurovia_primary_dark">#FF00418c</color>
     <color name="emphasis">@color/eurovia_primary</color>
     <color name="emphasis_pressed">@color/step_pager_previous_tab_color</color>
 

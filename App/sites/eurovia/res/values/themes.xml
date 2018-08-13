@@ -9,8 +9,8 @@
     </style>
 
     <style name="Theme.Eurovia" parent="Theme.Base">
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorPrimaryDark">@color/black_alpha_40</item>
+        <item name="colorPrimary">@color/eurovia_primary</item>
+        <item name="colorPrimaryDark">@color/eurovia_primary_dark</item>
         <item name="colorAccent">@color/eurovia_primary</item>
         <item name="colorAccentDark">@color/eurovia_primary_dark</item>
         <item name="colorButtonNormal">@color/white</item>
