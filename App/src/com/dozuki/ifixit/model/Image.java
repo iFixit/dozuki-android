@@ -16,8 +16,15 @@ public class Image implements Serializable {
    private static final int LOCAL_IMAGE_ID = -1;
    private static final String TAG = "Image";
 
-   @SerializedName("id") private int mId;
-   @SerializedName("original") private String mPath = "";
+   @SerializedName("id") public int mId;
+   @SerializedName("original") public String mPath = "";
+   @SerializedName("standard") public String mStandard = "";
+   @SerializedName("large") public String mLarge = "";
+   @SerializedName("mini") public String mMini = "";
+   @SerializedName("thumbnail") public String mThumbnail = "";
+   @SerializedName("huge") public String mHuge = "";
+   @SerializedName("medium") public String mMedium = "";
+
    private String mLocalPath;
    private Bitmap mBitmap;
 
@@ -70,7 +77,32 @@ public class Image implements Serializable {
    }
 
    public String getPath(String size) {
-      return mPath + size;
+      String result;
+
+      switch (size.replace(".", "")) {
+         case "mini":
+            result = mMini;
+            break;
+         case "thumbnail":
+            result = mThumbnail;
+            break;
+         case "standard":
+            result = mStandard;
+            break;
+         case "medium":
+            result = mMedium;
+            break;
+         case "large":
+            result = mLarge;
+            break;
+         case "huge":
+            result = mHuge;
+            break;
+         default:
+            result = mPath;
+      }
+
+      return result;
    }
 
    /**

@@ -753,20 +753,15 @@ public class JSONHelper {
    }
 
    public static Image parseImage(JSONObject image, String imageFieldName) {
-      try {
-         if (image == null) {
-            return new Image();
-         }
-
-         if (imageFieldName != null) {
-            image = image.optJSONObject(imageFieldName);
-         }
-
-         return new Image(image.getInt("id"), image.getString("original"));
-      } catch (JSONException e) {
-         Log.w(TAG, "Image parsing", e);
+      if (image == null) {
          return new Image();
       }
+
+      if (imageFieldName != null) {
+         image = image.optJSONObject(imageFieldName);
+      }
+
+      return new Gson().fromJson(image.toString(), Image.class);
    }
 
 }
