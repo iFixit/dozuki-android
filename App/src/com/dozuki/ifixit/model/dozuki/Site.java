@@ -388,7 +388,7 @@ public class Site implements Serializable {
          site = new Site(3815);
          site.mName = "eurovia";
          site.mDomain = "eurovia.dozuki.com";
-         site.mTitle = "Eurovia";
+         site.mTitle = "HowTo";
          site.mTheme = "custom";
          site.mAvailableLanguages = new String[]{"fr", "en", "de", "es"};
          site.mPublic = false;
