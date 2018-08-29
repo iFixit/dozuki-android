@@ -42,6 +42,19 @@ public class Image implements Serializable {
       mLocalPath = "";
    }
 
+   public Image(Image image) {
+      mId = image.mId;
+      mPath = image.mPath;
+      mStandard = image.mStandard;
+      mLarge = image.mLarge;
+      mMini = image.mMini;
+      mThumbnail = image.mThumbnail;
+      mHuge = image.mHuge;
+      mMedium = image.mMedium;
+      mLocalPath = image.mLocalPath;
+      mBitmap = image.mBitmap;
+   }
+
    public void setLocalImage(String path) {
       mId = LOCAL_IMAGE_ID;
       mPath = path;
@@ -122,6 +135,7 @@ public class Image implements Serializable {
    public String toString() {
       return "{\n" +
        "path: " + mPath + ",\n" +
+       "large: " + mLarge + ",\n" +
        "localPath: " + mLocalPath + ",\n" +
        "id: " + mId + "\n" +
        "}";

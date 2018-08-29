@@ -26,6 +26,7 @@ public class PhotoMediaFragment extends MediaFragment {
       setEmptyListView();
 
       if (!event.hasError()) {
+         //event.getResult();
          ArrayList<UserImage> imageList = new ArrayList<UserImage>(event.getResult());
          if (imageList.size() > 0) {
             mMediaList.setItems(imageList);

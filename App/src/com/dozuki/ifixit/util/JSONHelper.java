@@ -486,18 +486,16 @@ public class JSONHelper {
    }
 
    private static UserImage parseUserImage(JSONObject jImage) throws JSONException {
-      JSONObject img = jImage.getJSONObject("image");
-
-      int id = img.getInt("id");
+      Image image = parseImage(jImage.getJSONObject("image"), null);
+      
       int width = jImage.getInt("width");
       int height = jImage.getInt("height");
-      String path = img.getString("original");
       String ratio = jImage.getString("ratio");
       String markup = jImage.isNull("markup") ? "" : jImage.getString("markup");
       // TODO: Add exif.
       String exif = "";
 
-      return new UserImage(id, path, width, height, ratio, markup, exif);
+      return new UserImage(image, width, height, ratio, markup, exif);
    }
 
    public static GalleryVideoList parseUserVideos(String jVideo) throws JSONException {

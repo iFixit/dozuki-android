@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class GalleryImage extends UserImage implements Serializable {
    private static final long serialVersionUID = 772113423839309007L;
 
-   private boolean mSelected;
+   private boolean mSelected = false;
 
    public GalleryImage() {
       super();
@@ -16,13 +16,7 @@ public class GalleryImage extends UserImage implements Serializable {
    }
 
    public GalleryImage(UserImage image) {
-      super();
-      super.setId(image.getId());
-      super.setPath(image.getPath());
-      super.setMarkup(image.getMarkup());
-      super.setHeight(image.getHeight());
-      super.setWidth(image.getWidth());
-      super.setRatio(image.getRatio());
+      super(image);
 
       mSelected = false;
    }

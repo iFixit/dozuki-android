@@ -2,15 +2,9 @@ package com.dozuki.ifixit.ui.gallery;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.dozuki.ifixit.R;
@@ -64,10 +58,8 @@ public class MediaViewItem extends RelativeLayout {
       }
 
       if (image.isLocal()) {
-         Log.d("local image", image.toString());
          Uri temp = Uri.parse(image.getPath());
          image.setLocalImage(temp.toString());
-         Log.d("local image after parse", image.toString());
          mImage = image;
          mImageView.setImage(mImage);
 
@@ -80,7 +72,8 @@ public class MediaViewItem extends RelativeLayout {
       } else {
          mImage = image;
          mImageView.setImage(mImage);
-         this.setImageItem(image.getPath(ImageSizes.stepThumb));
+
+         this.setImageItem(image.getPath(ImageSizes.guideList));
       }
    }
 

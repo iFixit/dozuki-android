@@ -22,8 +22,18 @@ public class UserImage extends Image implements Serializable {
       mExif = "";
    }
 
-   public UserImage(int id, String path, int width, int height, String ratio, String markup, String exif) {
-      super(id, path);
+   public UserImage(UserImage image) {
+      super(image);
+
+      mWidth = image.mWidth;
+      mHeight = image.mHeight;
+      mRatio = image.mRatio;
+      mMarkup = image.mMarkup;
+      mExif = image.mExif;
+   }
+
+   public UserImage(Image image, int width, int height, String ratio, String markup, String exif) {
+      super(image);
 
       mWidth = width;
       mHeight = height;
