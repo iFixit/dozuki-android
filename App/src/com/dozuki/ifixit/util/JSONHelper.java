@@ -361,12 +361,15 @@ public class JSONHelper {
       int width = jVideoThumb.getInt("width");
       int height = jVideoThumb.getInt("height");
 
-      return new VideoThumbnail(image.getId(), image.getPath(), width, height);
+      return new VideoThumbnail(image, width, height);
    }
 
    private static VideoEncoding parseVideoEncoding(JSONObject jVideoEncoding) throws JSONException {
-      return new VideoEncoding(jVideoEncoding.getInt("width"), jVideoEncoding.getInt("height"),
-        jVideoEncoding.getString("url"), jVideoEncoding.getString("format"));
+      return new VideoEncoding(
+       jVideoEncoding.getInt("width"),
+       jVideoEncoding.getInt("height"),
+       jVideoEncoding.getString("url"),
+       jVideoEncoding.getString("format"));
    }
 
    private static StepLine parseLine(JSONObject jLine) throws JSONException {
@@ -487,7 +490,7 @@ public class JSONHelper {
 
    private static UserImage parseUserImage(JSONObject jImage) throws JSONException {
       Image image = parseImage(jImage.getJSONObject("image"), null);
-      
+
       int width = jImage.getInt("width");
       int height = jImage.getInt("height");
       String ratio = jImage.getString("ratio");

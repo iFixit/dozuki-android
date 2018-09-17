@@ -18,8 +18,8 @@ public class Video implements Serializable {
       mEncodings = new ArrayList<VideoEncoding>();
    }
 
-   public void addEncoding(VideoEncoding parseVideoEncoding) {
-      mEncodings.add(parseVideoEncoding);
+   public void addEncoding(VideoEncoding encoding) {
+      mEncodings.add(encoding);
    }
 
    public void setThumbnail(VideoThumbnail thumb) {

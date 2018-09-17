@@ -8,8 +8,8 @@ public class VideoThumbnail extends Image implements Serializable {
    private int mWidth;
    private int mHeight;
 
-   public VideoThumbnail(int imageid, String url, int width, int height) {
-      super(imageid, url);
+   public VideoThumbnail(Image image, int width, int height) {
+      super(image);
       mWidth = width;
       mHeight = height;
    }
