@@ -5,12 +5,21 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/action_bar_switch_padding">
 
+    <TextView
+        android:id="@+id/publish_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4dp"
+        android:text="@string/publish"
+        android:textColor="@color/white"/>
+
     <android.support.v7.widget.SwitchCompat
-            android:id="@+id/publish_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textOn="@string/publish"
-            android:textOff="@string/unpublish"/>
+        android:id="@+id/publish_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textOff="@string/unpublish"
+        android:textOn="@string/publish"/>
 
 </RelativeLayout>
