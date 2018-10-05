@@ -2,28 +2,17 @@ package com.dozuki.ifixit.ui.wiki;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.text.Html;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
-import android.text.style.ImageSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.TextAppearanceSpan;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.Wiki;
 import com.dozuki.ifixit.ui.BaseMenuDrawerActivity;
-import com.dozuki.ifixit.ui.guide.view.GuideViewActivity;
 import com.dozuki.ifixit.util.PicassoImageGetter;
-import com.dozuki.ifixit.util.UrlImageGetter;
-import com.dozuki.ifixit.util.Utils;
-import com.dozuki.ifixit.util.WikiHtmlTagHandler;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
@@ -96,6 +85,6 @@ public class WikiViewActivity extends BaseMenuDrawerActivity {
 
    private void fetchWiki(String title) {
       showLoading(R.id.loading_container);
-      Api.call(this, ApiCall.wiki(title));
+      Api.call(this, ApiCall.wiki(title, mWiki.langid));
    }
 }

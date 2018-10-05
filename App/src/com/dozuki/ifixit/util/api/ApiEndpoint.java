@@ -898,7 +898,14 @@ public enum ApiEndpoint {
        mEndpoint.createUrl(query));
 
       if (VALID_LANGIDS.contains(langid)) {
-         url = Uri.parse(url).buildUpon().appendQueryParameter("langid", langid).build().toString();
+         Uri baseUri = Uri.parse(url);
+         boolean hasLangid = baseUri.getQueryParameterNames().contains("langid");
+
+         if (hasLangid) {
+            url = baseUri.toString();
+         } else {
+            url = baseUri.buildUpon().appendQueryParameter("langid", langid).build().toString();
+         }
       }
 
       return url;

@@ -91,7 +91,8 @@ public class GuideListRecyclerAdapter extends RecyclerView.Adapter<GuideListRecy
          Transformation transform = new RoundedTransformation(4, 0);
 
          if (guide.hasImage()) {
-            // Clear image before setting it to make sure the old image isn't the background while the new one is loading
+            // Clear image before setting it to make sure the old image isn't the background while
+            // the new one is loading
             Utils.safeStripImageView(mThumbnail);
             mPicasso.cancelRequest(mThumbnail);
 
@@ -113,7 +114,7 @@ public class GuideListRecyclerAdapter extends RecyclerView.Adapter<GuideListRecy
       @Override
       public void onClick(View view) {
          Context context = view.getContext();
-         Intent intent = GuideViewActivity.viewGuideid(context, mGuide.mGuideid);
+         Intent intent = GuideViewActivity.viewGuideid(context, mGuide.mGuideid, mGuide.mLocale);
          context.startActivity(intent);
       }
    }

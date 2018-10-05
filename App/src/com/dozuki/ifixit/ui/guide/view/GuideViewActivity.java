@@ -50,6 +50,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
    public static final String INBOUND_STEP_ID = "INBOUND_STEP_ID";
    public static final String COMMENTS_TAG = "COMMENTS_TAG";
    private static final int COMMENT_REQUEST = 0;
+   private static final String LANGID = "LANGID";
 
    private int mGuideid;
    private Guide mGuide;
@@ -62,6 +63,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
    private boolean mFavoriting = false;
    private boolean mIsOfflineGuide;
    private Toast mToast;
+   private String mLangid;
 
    /////////////////////////////////////////////////////
    // LIFECYCLE
@@ -73,10 +75,16 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
       return intent;
    }
 
+   public static Intent viewGuideid(Context context, int guideid, String langid) {
+      Intent intent = new Intent(context, GuideViewActivity.class);
+      intent.putExtra(GUIDEID, guideid);
+      intent.putExtra(LANGID, langid);
+      return intent;
+   }
+
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-
       super.setDrawerContent(R.layout.guide_main);
 
       getSupportActionBar().setElevation(0);
@@ -107,7 +115,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
       if (mGuide != null) {
          setGuide(mGuide, mCurrentPage);
       } else {
-         fetchGuideFromApi(mGuideid);
+         fetchGuideFromApi();
       }
    }
 
@@ -115,6 +123,10 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
       if (extras != null) {
          if (extras.containsKey(GUIDEID)) {
             mGuideid = extras.getInt(GUIDEID);
+         }
+
+         if (extras.containsKey(LANGID)) {
+            mLangid = extras.getString(LANGID);
          }
 
          if (extras.containsKey(GuideViewActivity.SAVED_GUIDE)) {
@@ -136,7 +148,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
       mInboundStepId = -1;
 
       extractExtras(intent.getExtras());
-      fetchGuideFromApi(mGuideid);
+      fetchGuideFromApi();
    }
 
    @Override
@@ -146,6 +158,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
       state.putInt(GUIDEID, mGuideid);
       state.putSerializable(SAVED_GUIDE, mGuide);
       state.putInt(CURRENT_PAGE, mCurrentPage);
+      state.putString(LANGID, mLangid);
       state.putBoolean(FAVORITING, mFavoriting);
       state.putBoolean(IS_OFFLINE_GUIDE, mIsOfflineGuide);
    }
@@ -279,7 +292,7 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
             // Set guide to null to force a refresh of the guide object.
             mGuide = null;
             supportInvalidateOptionsMenu();
-            fetchGuideFromApi(mGuideid);
+            fetchGuideFromApi();
             return true;
          case R.id.comments:
             ArrayList<Comment> comments;
@@ -452,9 +465,9 @@ public class GuideViewActivity extends BaseMenuDrawerActivity implements
       supportInvalidateOptionsMenu();
    }
 
-   private void fetchGuideFromApi(int guideid) {
+   private void fetchGuideFromApi() {
       showLoading(R.id.loading_container);
-      Api.call(this, ApiCall.guide(guideid));
+      Api.call(this, ApiCall.guide(mGuideid, mLangid));
    }
 
    /**

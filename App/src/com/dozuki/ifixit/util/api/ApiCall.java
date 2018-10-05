@@ -105,6 +105,10 @@ public class ApiCall {
       return new ApiCall(ApiEndpoint.GUIDE, "" + guideid);
    }
 
+   public static ApiCall guide(int guideid, String langid) {
+      return new ApiCall(ApiEndpoint.GUIDE, guideid + "?langid=" + langid);
+   }
+
    public static ApiCall userInfo(String authToken) {
       ApiCall apiCall = new ApiCall(ApiEndpoint.USER_INFO, NO_QUERY);
 
@@ -117,8 +121,8 @@ public class ApiCall {
       return new ApiCall(ApiEndpoint.TOPIC, topicName);
    }
 
-   public static ApiCall wiki(String title) {
-      return new ApiCall(ApiEndpoint.WIKI, title);
+   public static ApiCall wiki(String title, String langid) {
+      return new ApiCall(ApiEndpoint.WIKI, title + "?langid=" + langid);
    }
 
    public static ApiCall register(String email, String password, String username) {
