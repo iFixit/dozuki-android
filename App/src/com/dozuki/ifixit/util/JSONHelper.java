@@ -138,8 +138,7 @@ public class JSONHelper {
       site.mGoogleOAuth2Clientid = siteInfoObject.getString("google-oauth2-clientid");
 
       if (!siteInfoObject.isNull("logo")) {
-         JSONObject logoImage = siteInfoObject.getJSONObject("logo").getJSONObject("image");
-         site.mLogo = new Image(logoImage.getInt("id"), logoImage.getString("original"));
+         site.mLogo = parseImage(siteInfoObject.getJSONObject("logo"), "image");
       }
 
       Iterator<?> keys = types.keys();
