@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/action_bar_switch_padding">
@@ -10,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/publish_toggle"
         android:layout_marginRight="4dp"
         android:text="@string/publish"
         android:textColor="@color/white"/>
@@ -20,6 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:textOff="@string/unpublish"
-        android:textOn="@string/publish"/>
+        android:textOn="@string/publish"
+        app:theme="@style/SwitchControl"
+        />
 
 </RelativeLayout>

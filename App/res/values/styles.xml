@@ -414,4 +414,8 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="SwitchControl">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
 </resources>
