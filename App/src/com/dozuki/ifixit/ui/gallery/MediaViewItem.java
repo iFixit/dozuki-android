@@ -72,13 +72,15 @@ public class MediaViewItem extends RelativeLayout {
       } else {
          mImage = image;
          mImageView.setImage(mImage);
-
-         this.setImageItem(image.getPath(ImageSizes.guideList));
+         String src = image.getPath(ImageSizes.guideList);
+         src = !src.isEmpty() ? src : image.getPath();
+         this.setImageItem(src);
       }
    }
 
    public void setImageItem(String image) {
-      buildImage(Picasso.with(mContext).load(image));
+      buildImage(Picasso.with(mContext)
+       .load(image));
    }
 
    public void setImageItem(File image) {
