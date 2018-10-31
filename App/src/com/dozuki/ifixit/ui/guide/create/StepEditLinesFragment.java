@@ -314,6 +314,7 @@ public class StepEditLinesFragment extends BaseFragment implements BulletDialogL
    }
 
    public void setSteps(ArrayList<StepLine> lines) {
+      mLines.clear();
       mLines.addAll(lines);
    }
 
