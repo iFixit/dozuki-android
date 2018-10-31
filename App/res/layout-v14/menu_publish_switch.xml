@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="4dp"
-        android:layout_toLeftOf="@+id/publish_toggle"
         android:text="@string/publish"
         android:textColor="@color/white"/>
 
@@ -21,6 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
+        android:layout_toRightOf="@+id/publish_title"
         android:textOff="@string/unpublish"
         android:textOn="@string/publish"
         app:theme="@style/SwitchControl"
