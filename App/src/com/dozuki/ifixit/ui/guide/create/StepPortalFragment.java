@@ -142,9 +142,7 @@ public class StepPortalFragment extends BaseFragment implements
             launchStepEdit(mGuide.getSteps().size());
             return true;
          case R.id.view_guide:
-            Intent intent = new Intent(getActivity(), GuideViewActivity.class);
-            intent.putExtra(GuideViewActivity.GUIDEID, mGuide.getGuideid());
-            intent.putExtra(GuideViewActivity.CURRENT_PAGE, 0);
+            Intent intent = GuideViewActivity.viewGuideid(getContext(), mGuide.getGuideid(), mGuide.getLocale());
             startActivity(intent);
             return true;
          default:
