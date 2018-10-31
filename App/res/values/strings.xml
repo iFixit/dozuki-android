@@ -383,4 +383,5 @@
     <string name="language_select">Language Select</string>
     <string name="language_changed_toast">Language Changed</string>
     <string name="select_language">Select Language</string>
+    <string name="current">(current)</string>
 </resources>
