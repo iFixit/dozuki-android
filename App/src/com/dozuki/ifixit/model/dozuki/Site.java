@@ -262,7 +262,7 @@ public class Site implements Serializable {
          site.mDescription = "";
          site.mStandardAuth = false;
          site.mBarcodeScanner = false;
-         site.mSsoUrl = "http://aristocrat.dozuki.com/Login";
+         site.mSsoUrl = "https://aristocrat.dozuki.com/Login";
          site.mPublicRegistration = false;
          site.mHasTitlePictures = true;
          site.mObjectNamePlural = res.getString(R.string.categories);
@@ -395,7 +395,7 @@ public class Site implements Serializable {
          site.mAnswers = false;
          site.mDescription = "";
          site.mStandardAuth = false;
-         site.mSsoUrl = "http://eurovia.dozuki.com/Login";
+         site.mSsoUrl = "https://eurovia.dozuki.com/Login";
          site.mPublicRegistration = false;
          site.mObjectNamePlural = res.getString(R.string.categories);
          site.mObjectNameSingular = res.getString(R.string.category);
