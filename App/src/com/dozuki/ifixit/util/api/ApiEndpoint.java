@@ -515,7 +515,10 @@ public enum ApiEndpoint {
        }
     },
     true,
-    "PUT"
+    "PUT",
+    false, // forcePublic
+    true,  // postResults
+    false  // appendLangid
    ),
 
    UNFAVORITE_GUIDE(
@@ -533,7 +536,10 @@ public enum ApiEndpoint {
        }
     },
     true,
-    "DELETE"
+    "DELETE",
+    false, // forcePublic
+    true,  // postResults
+    false  // appendLangid
    ),
 
    CREATE_GUIDE(
@@ -605,7 +611,10 @@ public enum ApiEndpoint {
        }
     },
     true,
-    "PUT"
+    "PUT",
+    false, // forcePublic
+    true,  // postResults
+    false  // appendLangid
    ),
 
    /***
@@ -646,7 +655,10 @@ public enum ApiEndpoint {
        }
     },
     true,
-    "PUT"
+    "PUT",
+    false, // forcePublic
+    true,  // postResults
+    false  // appendLangid
    ),
 
    UNPUBLISH_GUIDE(
@@ -664,7 +676,10 @@ public enum ApiEndpoint {
        }
     },
     true,
-    "DELETE"
+    "DELETE",
+    false, // forcePublic
+    true,  // postResults
+    false  // appendLangid
    ),
 
    REORDER_GUIDE_STEPS(
@@ -682,7 +697,10 @@ public enum ApiEndpoint {
        }
     },
     true,
-    "PUT"
+    "PUT",
+    false, // forcePublic
+    true,  // postResults
+    false  // appendLangid
    ),
 
    ADD_GUIDE_STEP(
