@@ -1,7 +1,16 @@
 package com.dozuki.ifixit.util;
 
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.VectorDrawable;
+import android.os.Build;
+import android.support.annotation.DrawableRes;
+import android.support.graphics.drawable.VectorDrawableCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.Spanned;
@@ -9,8 +18,6 @@ import android.text.format.DateUtils;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.TextAppearanceSpan;
 import android.text.style.URLSpan;
-import android.util.Log;
-import android.util.TypedValue;
 import android.widget.ImageView;
 
 import com.dozuki.ifixit.App;
@@ -21,9 +28,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Utils {
    /**

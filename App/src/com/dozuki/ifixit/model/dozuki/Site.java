@@ -379,7 +379,7 @@ public class Site implements Serializable {
          site.mPublic = false;
          site.mAnswers = false;
          site.mDescription = "";
-         site.mStandardAuth = false;
+         site.mStandardAuth = true;
          site.mSsoUrl = "https://xnet.hypertherm.com/Xnet/dozukisso.jsp";
          site.mPublicRegistration = false;
          site.mObjectNamePlural = res.getString(R.string.categories);

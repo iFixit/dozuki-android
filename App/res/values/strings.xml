@@ -384,4 +384,5 @@
     <string name="language_changed_toast">Language Changed</string>
     <string name="select_language">Select Language</string>
     <string name="current">(current)</string>
+    <string name="percent_complete">%1$.2f complete</string>
 </resources>

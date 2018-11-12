@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,14 +22,14 @@ import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.GuideMediaProgress;
 import com.dozuki.ifixit.util.transformations.RoundedTransformation;
-import com.f2prateek.progressbutton.ProgressButton;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 public class OfflineGuideListItem extends CardView implements
  View.OnClickListener {
+   private final TextView mProgressText;
    private TextView mTitleView;
-   private ProgressButton mProgressButton;
+   private ImageButton mProgressButton;
    private ImageView mThumbnail;
    private Activity mActivity;
    private GuideMediaProgress mGuideMedia;
@@ -37,13 +38,14 @@ public class OfflineGuideListItem extends CardView implements
       super(activity);
       mActivity = activity;
 
-      LayoutInflater inflater = (LayoutInflater)activity.getSystemService(
+      LayoutInflater inflater = (LayoutInflater) activity.getSystemService(
        Context.LAYOUT_INFLATER_SERVICE);
       inflater.inflate(R.layout.offline_guide_item, this, true);
 
-      mTitleView = (TextView)findViewById(R.id.offline_guide_title);
-      mProgressButton = (ProgressButton)findViewById(R.id.offline_guide_progress_button);
-      mThumbnail = (ImageView)findViewById(R.id.offline_guide_thumbnail);
+      mTitleView = (TextView) findViewById(R.id.offline_guide_title);
+      mProgressButton = (ImageButton) findViewById(R.id.offline_guide_remove);
+      mThumbnail = (ImageView) findViewById(R.id.offline_guide_thumbnail);
+      mProgressText = (TextView) findViewById(R.id.offline_guide_progress);
 
       mProgressButton.setOnClickListener(new OnClickListener() {
          @Override
@@ -68,13 +70,6 @@ public class OfflineGuideListItem extends CardView implements
                    dialog.cancel();
                 }
              })
-             .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                   mProgressButton.setPinned(true);
-                   mProgressButton.invalidate();
-                }
-             })
              .setCancelable(true);
 
             AlertDialog dialog = builder.create();
@@ -83,32 +78,27 @@ public class OfflineGuideListItem extends CardView implements
       });
 
       setOnClickListener(this);
-      ((RelativeLayout)findViewById(R.id.guide_item_target)).setOnClickListener(this);
+      ((RelativeLayout) findViewById(R.id.guide_item_target)).setOnClickListener(this);
    }
 
    public void setRowData(GuideMediaProgress guideMedia, boolean displayLiveImages,
-    boolean isSyncing) {
+                          boolean isSyncing) {
+
       mGuideMedia = guideMedia;
 
       mTitleView.setText(mGuideMedia.mGuideInfo.mTitle);
-      mProgressButton.setPinned(true);
-      mProgressButton.setCircleColor(getResources().getColor(
-       R.color.progress_button_background));
 
-      int progressColor = isSyncing || mGuideMedia.isComplete() ?
-       R.color.emphasis : R.color.progress_button_progress_disabled;
-      mProgressButton.setProgressColor(getResources().getColor(progressColor));
-
-      if (mGuideMedia.mTotalMedia == 0) {
-         // It's valid for guides to have no images whatsoever so we must pretend that
-         // it has 1 out of 1 images downloaded so ProgressButton doesn't crash on a
-         // max value of 0.
-         mProgressButton.setProgressAndMax(1, 1);
+      if (!guideMedia.isComplete()) {
+         mProgressButton.setVisibility(View.GONE);
+         mProgressText.setVisibility(View.VISIBLE);
+         final double percentComplete = ((double) mGuideMedia.mMediaProgress / mGuideMedia.mTotalMedia) * 100;
+         mProgressText.setText(String.format("%,.2f%% complete", percentComplete));
       } else {
-         mProgressButton.setProgressAndMax(mGuideMedia.mMediaProgress, mGuideMedia.mTotalMedia);
+         mProgressButton.setVisibility(View.VISIBLE);
+         mProgressText.setVisibility(View.GONE);
       }
 
-      com.squareup.picasso.Picasso picasso = Picasso.with(mActivity);
+      Picasso picasso = Picasso.with(mActivity);
       Transformation transform = new RoundedTransformation(4, 0);
       Image image = mGuideMedia.mGuideInfo.mImage;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/offline_guide_item"
         android:clickable="true"
         android:layout_gravity="center"
@@ -33,12 +33,24 @@
             android:scrollHorizontally="true"
             android:text="@string/default_title"/>
 
-        <com.f2prateek.progressbutton.ProgressButton
-            android:id="@+id/offline_guide_progress_button"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/offline_guide_progress"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/offline_guide_title"
+            android:layout_toRightOf="@+id/offline_guide_thumbnail"
+            android:layout_marginRight="@dimen/guide_create_list_item_text_right_offset"
+            android:layout_marginTop="2dp"
+            />
+
+        <ImageButton
+            android:id="@+id/offline_guide_remove"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:checked="false"/>
+            android:background="@color/transparent"
+            app:srcCompat="@drawable/ic_close_black_24dp"/>
+
     </RelativeLayout>
 </android.support.v7.widget.CardView>
