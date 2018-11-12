@@ -5,7 +5,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
 
@@ -27,45 +27,48 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile 'com.android.support:support-v4:27.1.0'
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    compile 'com.android.support:cardview-v7:27.1.0'
-    compile 'com.android.support:design:27.1.0'
-    compile 'com.android.support:recyclerview-v7:27.1.0'
-    compile 'com.android.support:palette-v7:27.1.0'
-    compile 'com.squareup.okio:okio:1.13.0'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-    compile 'com.marczych.androidsectionheaders:androidsectionheaders:1.0.0'
-    compile 'com.squareup:otto:1.3.4'
-    compile 'org.jsoup:jsoup:1.11.1'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.viewpagerindicator:viewpagerindicator:2.4.3'
-    compile 'it.sephiroth.android.library.imagezoom:imagezoom:1.0.0'
-    compile 'com.vandalsoftware.android:dslv:0.6.3'
-    compile 'com.google.android.gms:play-services-identity:7.0.0'
-    compile 'com.google.android.gms:play-services-plus:7.0.0'
-    compile 'com.google.zxing:android-integration:3.3.0'
-    compile 'com.stepstone.stepper:material-stepper:4.3.1'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    implementation fileTree(include: '*.jar', dir: 'libs')
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:palette-v7:28.0.0'
+    implementation 'com.squareup.okio:okio:1.13.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+    implementation 'com.marczych.androidsectionheaders:androidsectionheaders:1.0.0'
+    implementation 'com.squareup:otto:1.3.4'
+    implementation 'org.jsoup:jsoup:1.11.1'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.viewpagerindicator:viewpagerindicator:2.4.3'
+    implementation 'it.sephiroth.android.library.imagezoom:imagezoom:1.0.0'
+    implementation 'com.vandalsoftware.android:dslv:0.6.3'
+    implementation 'com.google.android.gms:play-services-identity:7.0.0'
+    implementation 'com.google.android.gms:play-services-plus:7.0.0'
+    implementation 'com.google.zxing:android-integration:3.3.0'
+    implementation 'com.stepstone.stepper:material-stepper:4.3.1'
+
+    implementation 'br.com.simplepass:loading-button-android:1.14.0'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }
 
 // List of sites used to create signingConfigs, sourceSets, and productFlavors.
 def sites = ["ifixit", "dozuki", "accustream", "dripassist", "pva", "oscaro", "charlessmith", "aristocrat", "hyperthermtoolkit", "eurovia"]
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         versionCode 72
         versionName "3.0.10"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion 17
+        targetSdkVersion 28
         applicationId "com.dozuki.ifixit"
         vectorDrawables.useSupportLibrary = true
     }
@@ -95,6 +98,8 @@ android {
         abortOnError false
         disable 'MissingTranslation'
     }
+
+    flavorDimensions "primary"
 
     /* Construct base product flavors. */
     productFlavors {
