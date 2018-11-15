@@ -20,6 +20,7 @@ import com.squareup.otto.Subscribe;
 
 public class WikiViewActivity extends BaseMenuDrawerActivity {
    private static final String WIKI_TITLE_KEY = "WIKI_TITLE_KEY";
+   private static final String WIKI_KEY = "WIKI_KEY";
 
    private static final float HEADER_SIZE = 1.3f;
    private Wiki mWiki;
@@ -38,7 +39,7 @@ public class WikiViewActivity extends BaseMenuDrawerActivity {
       String wikiTitle = "";
 
       if (savedInstanceState != null) {
-         wikiTitle = savedInstanceState.getString(WIKI_TITLE_KEY);
+         mWiki = (Wiki) savedInstanceState.getSerializable(WIKI_KEY);
       } else {
          Bundle extras = getIntent().getExtras();
          wikiTitle = extras.getString(WIKI_TITLE_KEY);
@@ -49,6 +50,12 @@ public class WikiViewActivity extends BaseMenuDrawerActivity {
       } else {
          fetchWiki(wikiTitle);
       }
+   }
+   @Override
+   public void onSaveInstanceState(Bundle state) {
+      super.onSaveInstanceState(state);
+
+      state.putSerializable(WIKI_KEY, mWiki);
    }
 
    private void initializeUI(Wiki wiki) {
@@ -73,6 +80,8 @@ public class WikiViewActivity extends BaseMenuDrawerActivity {
 
    @Subscribe
    public void onWiki(ApiEvent.ViewWiki event) {
+      hideLoading();
+
       if (!event.hasError()) {
          if (mWiki == null) {
             Wiki wiki = event.getResult();
