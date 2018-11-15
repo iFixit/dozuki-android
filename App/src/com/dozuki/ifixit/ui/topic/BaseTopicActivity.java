@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.ui.BaseMenuDrawerActivity;
 import com.dozuki.ifixit.ui.LanguageDialogFragment;
@@ -27,6 +28,9 @@ public abstract class BaseTopicActivity extends BaseMenuDrawerActivity
       // Retrieve the SearchView and plug it into SearchManager
       final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
       SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+      String hint = getString(R.string.search_site_hint, App.get().getSite().mTitle);
+
+      searchView.setQueryHint(hint);
       searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
       MenuItem item = menu.findItem(R.id.language_change);
