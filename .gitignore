@@ -51,3 +51,5 @@ captures
 # hide certs from git
 *.crt
 certs/
+
+*.hprof

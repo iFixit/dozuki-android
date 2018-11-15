@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name" translatable="false">Aristocrat Resource Center</string>
+    <string name="search_site_hint">Search Aristocrat</string>
 </resources>

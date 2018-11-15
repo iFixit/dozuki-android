@@ -121,8 +121,8 @@ public class ApiCall {
       return new ApiCall(ApiEndpoint.TOPIC, topicName);
    }
 
-   public static ApiCall wiki(String title, String langid) {
-      return new ApiCall(ApiEndpoint.WIKI, title + "?langid=" + langid);
+   public static ApiCall wiki(String title) {
+      return new ApiCall(ApiEndpoint.WIKI, title);
    }
 
    public static ApiCall register(String email, String password, String username) {

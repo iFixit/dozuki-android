@@ -59,9 +59,9 @@ public class WikiViewActivity extends BaseMenuDrawerActivity {
       App.sendScreenView("/wiki/view/" + mWiki.title);
       getSupportActionBar().setTitle(mWiki.displayTitle);
 
-      TextView wikiTitle = (TextView)findViewById(R.id.wiki_title);
+      TextView wikiTitle = (TextView) findViewById(R.id.wiki_title);
 
-      TextView wikiText = (TextView)findViewById(R.id.wiki_content);
+      TextView wikiText = (TextView) findViewById(R.id.wiki_content);
       wikiTitle.setText(mWiki.displayTitle);
       Html.ImageGetter imgGetter = new PicassoImageGetter(wikiText, getResources());
 
@@ -85,6 +85,6 @@ public class WikiViewActivity extends BaseMenuDrawerActivity {
 
    private void fetchWiki(String title) {
       showLoading(R.id.loading_container);
-      Api.call(this, ApiCall.wiki(title, mWiki.langid));
+      Api.call(this, ApiCall.wiki(title));
    }
 }

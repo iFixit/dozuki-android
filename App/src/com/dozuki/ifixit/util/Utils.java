@@ -1,16 +1,6 @@
 package com.dozuki.ifixit.util;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
-import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.graphics.drawable.VectorDrawableCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.Spanned;
@@ -32,6 +22,7 @@ import org.jsoup.select.Elements;
 public class Utils {
    /**
     * Trim off whitespace from the beginning and end of a given string.
+    *
     * @param s
     * @param start
     * @param end
@@ -69,14 +60,81 @@ public class Utils {
     */
    public static Editable stripNewlines(Editable s) {
       for (int i = s.length(); i > 0; i--) {
-         if (s.subSequence(i-1, i).toString().equals("\n")) {
-            s.replace(i-1, i, "");
+         if (s.subSequence(i - 1, i).toString().equals("\n")) {
+            s.replace(i - 1, i, "");
          }
       }
       return s;
    }
 
    public static String cleanWikiHtml(String html) {
+
+      html = cleanAndParseVideos(html);
+      html = cleanAndParseVimeo(html);
+
+      // Remove anchor elements from html
+      html = html.replaceAll("<a class=\\\"anchor\\\".+?<\\/a>", "");
+      html = html.replaceAll("<span class=\\\"editLink headerLink\\\".+?<\\/span>", "");
+
+      // Make the images bigger
+      html = html.replaceAll(".standard", ".large");
+
+      // Remove the /.pdf from Dozuki pdf document links.  PDF viewers on android error on them.
+      html = html.replaceAll("/.pdf", "");
+
+      return html;
+   }
+
+   private static String cleanAndParseVimeo(String html) {
+      Document doc = Jsoup.parse(html);
+      Elements embeds = doc.select("iframe");
+
+      for (Element embed : embeds) {
+         String src = embed.attr("src");
+
+         if (src.startsWith("https://player.vimeo.com")) {
+            Element posterLink = new Element("a")
+             .attr("href", src)
+             .text("Video Link");
+
+            embed.after(posterLink);
+            embed.remove();
+
+            html = doc.body().html();
+
+            /*
+            ((VimeoClient) VimeoClient.getInstance())
+             .fetchNetworkContent("https://vimeo.com/video/" + , new ModelCallback<Video>(Video.class) {
+                @Override
+                public void success(VideoList videoList) {
+                   if (videoList != null && videoList.data != null) {
+                      String videoTitlesString = "";
+                      boolean addNewLine = false;
+                      for (Video video : videoList.data) {
+                         if (addNewLine) {
+                            videoTitlesString += "\n";
+                         }
+                         addNewLine = true;
+                         videoTitlesString += video.name;
+                      }
+                      Log.e("VIMEO", "Success!");
+                      Log.d("VIMEO", videoTitlesString);
+                   }
+                }
+
+                @Override
+                public void failure(VimeoError error) {
+                   Log.e("VIMEO", "Failure to load");
+                }
+             });*/
+
+         }
+      }
+
+      return html;
+   }
+
+   private static String cleanAndParseVideos(String html) {
       Document doc = Jsoup.parse(html);
 
       Elements videos = doc.select("video");
@@ -92,16 +150,6 @@ public class Utils {
          video.remove();
          html = doc.body().html();
       }
-
-      // Remove anchor elements from html
-      html = html.replaceAll("<a class=\\\"anchor\\\".+?<\\/a>", "");
-      html = html.replaceAll("<span class=\\\"editLink headerLink\\\".+?<\\/span>", "");
-
-      // Make the images bigger
-      html = html.replaceAll(".standard", ".large");
-
-      // Remove the /.pdf from Dozuki pdf document links.  PDF viewers on android error on them.
-      html = html.replaceAll("/.pdf", "");
 
       return html;
    }
@@ -180,6 +228,7 @@ public class Utils {
 
    /**
     * From StackOverflow: https://stackoverflow.com/a/12147550
+    *
     * @param context
     * @param px
     * @return
@@ -191,6 +240,7 @@ public class Utils {
 
    /**
     * From StackOverflow: https://stackoverflow.com/a/12147550
+    *
     * @param context
     * @param dp
     * @return

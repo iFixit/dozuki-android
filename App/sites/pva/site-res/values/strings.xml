@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name" translatable="false">PVA Support Hub</string>
+    <string name="search_site_hint">Search PVA</string>
 </resources>
