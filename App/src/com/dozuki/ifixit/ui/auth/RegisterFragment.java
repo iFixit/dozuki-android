@@ -4,11 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +21,12 @@ import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiError;
 import com.dozuki.ifixit.util.api.ApiEvent;
+import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.otto.Subscribe;
+
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.fragment.app.Fragment;
 
 public class RegisterFragment extends BaseDialogFragment implements OnClickListener {
    private AppCompatButton mRegister;
@@ -62,7 +62,7 @@ public class RegisterFragment extends BaseDialogFragment implements OnClickListe
       }
    }
 
-   public static RegisterFragment newInstance() {
+   public static Fragment newInstance() {
       RegisterFragment frag = new RegisterFragment();
       return frag;
    }
@@ -178,10 +178,9 @@ public class RegisterFragment extends BaseDialogFragment implements OnClickListe
             break;
 
           case R.id.cancel_register_button:
-             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
               // Go back to login.
-             fragmentManager.beginTransaction()
+             getActivity().getSupportFragmentManager()
+              .beginTransaction()
               .remove(this)
               .add(LoginFragment.newInstance(), null)
               .commit();

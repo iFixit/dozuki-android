@@ -9,9 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatImageButton;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -39,6 +36,10 @@ import com.dozuki.ifixit.util.Utils;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.fragment.app.FragmentManager;
 
 public class StepEditLinesFragment extends BaseFragment implements BulletDialogListener, BulletRearrangeListener {
    private static final int BULLET_LIMIT = 8;

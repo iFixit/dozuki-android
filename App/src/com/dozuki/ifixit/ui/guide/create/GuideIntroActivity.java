@@ -3,10 +3,6 @@ package com.dozuki.ifixit.ui.guide.create;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v4.app.FixedFragmentStatePagerAdapter;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,6 +30,11 @@ import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 public class GuideIntroActivity extends BaseMenuDrawerActivity implements
  PageFragmentCallbacks, ReviewFragment.Callbacks, ModelCallbacks {
@@ -363,7 +364,7 @@ public class GuideIntroActivity extends BaseMenuDrawerActivity implements
    // ADAPTERS
    /////////////////////////////////////////////////////
 
-   public class FormWizardPagerAdapter extends FixedFragmentStatePagerAdapter {
+   public class FormWizardPagerAdapter extends FragmentStatePagerAdapter {
       private int mCutOffPage;
       private Fragment mPrimaryItem;
 

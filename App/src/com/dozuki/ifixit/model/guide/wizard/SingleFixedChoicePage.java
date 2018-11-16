@@ -16,13 +16,14 @@
 
 package com.dozuki.ifixit.model.guide.wizard;
 
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
 import com.dozuki.ifixit.ui.guide.create.wizard.SingleChoiceFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A page offering the user a number of mutually exclusive choices.

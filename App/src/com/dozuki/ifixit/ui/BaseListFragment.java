@@ -1,8 +1,8 @@
 package com.dozuki.ifixit.ui;
 
-import android.support.v4.app.ListFragment;
-
 import com.dozuki.ifixit.App;
+
+import androidx.fragment.app.ListFragment;
 
 /**
  * Base class for ListFragments. Handles bus registration and unregistration

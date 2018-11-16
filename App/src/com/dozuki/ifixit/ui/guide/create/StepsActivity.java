@@ -2,7 +2,6 @@ package com.dozuki.ifixit.ui.guide.create;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 
 import com.dozuki.ifixit.App;
@@ -14,6 +13,8 @@ import com.dozuki.ifixit.ui.guide.create.StepReorderFragment.StepRearrangeListen
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiEvent;
 import com.squareup.otto.Subscribe;
+
+import androidx.fragment.app.FragmentManager;
 
 public class StepsActivity extends BaseMenuDrawerActivity implements StepRearrangeListener {
    static final int GUIDE_EDIT_STEP_REQUEST = 0;

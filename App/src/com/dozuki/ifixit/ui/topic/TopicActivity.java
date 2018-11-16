@@ -4,23 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.topic.TopicNode;
 import com.dozuki.ifixit.ui.LoadingFragment;
-import com.dozuki.ifixit.util.LocaleManager;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
 import com.squareup.otto.Subscribe;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class TopicActivity extends BaseTopicActivity
  implements TopicSelectedListener, FragmentManager.OnBackStackChangedListener {
@@ -49,7 +48,6 @@ public class TopicActivity extends BaseTopicActivity
       mHideTopicList = mTopicViewOverlay != null;
 
       if (savedInstanceState != null) {
-         mRootTopic = (TopicNode) savedInstanceState.getSerializable(ROOT_TOPIC);
          mTopicListVisible = savedInstanceState.getBoolean(TOPIC_LIST_VISIBLE);
       } else {
          mTopicListVisible = true;
@@ -139,7 +137,7 @@ public class TopicActivity extends BaseTopicActivity
    public void onSaveInstanceState(Bundle outState) {
       super.onSaveInstanceState(outState);
 
-      outState.putSerializable(ROOT_TOPIC, mRootTopic);
+      //outState.putSerializable(ROOT_TOPIC, mRootTopic);
       outState.putBoolean(TOPIC_LIST_VISIBLE, mTopicListVisible);
    }
 
@@ -169,8 +167,7 @@ public class TopicActivity extends BaseTopicActivity
          } else {
             Intent intent = new Intent(this, TopicViewActivity.class);
             Bundle bundle = new Bundle();
-
-            bundle.putSerializable(TopicViewActivity.TOPIC_KEY, topic);
+            bundle.putSerializable(TopicViewActivity.TOPIC_KEY, topic.getName());
             intent.putExtras(bundle);
             startActivity(intent);
          }
@@ -183,7 +180,7 @@ public class TopicActivity extends BaseTopicActivity
          TopicListFragment frag = new TopicListFragment();
 
          Bundle args = new Bundle();
-         args.putSerializable(TopicListFragment.CURRENT_TOPIC, topic);
+         args.putSerializable(TopicListFragment.CURRENT_TOPIC, topic.getName());
          frag.setArguments(args);
 
          changeTopicListView(frag, !topic.isRoot());

@@ -16,12 +16,13 @@
 
 package com.dozuki.ifixit.model.guide.wizard;
 
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 
 import com.dozuki.ifixit.ui.guide.create.wizard.EditTextFragment;
 
 import java.util.ArrayList;
+
+import androidx.fragment.app.Fragment;
 
 public class EditTextPage extends Page {
    public static final String TEXT_DATA_KEY = "name";

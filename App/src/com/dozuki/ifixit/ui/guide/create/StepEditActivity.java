@@ -8,17 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FixedFragmentStatePagerAdapter;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,6 +39,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 public class StepEditActivity extends BaseMenuDrawerActivity implements OnClickListener, ViewPager.OnPageChangeListener {
    private static final int STEP_VIEW = 1;
@@ -798,7 +799,7 @@ public class StepEditActivity extends BaseMenuDrawerActivity implements OnClickL
       mPagePosition = position;
    }
 
-   private class StepAdapter extends FixedFragmentStatePagerAdapter {
+   private class StepAdapter extends FragmentStatePagerAdapter {
       private Map<Integer, String> mPageLabelMap;
 
       public StepAdapter(FragmentManager fm) {

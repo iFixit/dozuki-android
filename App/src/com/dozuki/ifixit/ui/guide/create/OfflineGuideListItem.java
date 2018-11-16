@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,6 +23,8 @@ import com.dozuki.ifixit.util.api.GuideMediaProgress;
 import com.dozuki.ifixit.util.transformations.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
+
+import androidx.cardview.widget.CardView;
 
 public class OfflineGuideListItem extends CardView implements
  View.OnClickListener {

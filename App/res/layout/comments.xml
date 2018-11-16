@@ -58,7 +58,7 @@
             android:layout_weight="8"
             android:hint="@string/add_comment"/>
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/add_comment_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

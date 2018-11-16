@@ -10,9 +10,6 @@ import android.content.SyncStatusObserver;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,6 +40,10 @@ import com.squareup.otto.Subscribe;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.AsyncTaskLoader;
+import androidx.loader.content.Loader;
 
 public class OfflineGuidesActivity extends BaseMenuDrawerActivity implements
  LoaderManager.LoaderCallbacks<List<GuideMediaProgress>> {

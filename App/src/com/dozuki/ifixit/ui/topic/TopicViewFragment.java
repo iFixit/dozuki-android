@@ -1,13 +1,9 @@
 package com.dozuki.ifixit.ui.topic;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
@@ -19,7 +15,10 @@ import com.dozuki.ifixit.ui.topic.adapters.TopicPageAdapter;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.otto.Subscribe;
+
+import androidx.viewpager.widget.ViewPager;
 
 public class TopicViewFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
    private static final String CURRENT_PAGE = "CURRENT_PAGE";

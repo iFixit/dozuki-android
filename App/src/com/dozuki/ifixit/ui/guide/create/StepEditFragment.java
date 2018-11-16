@@ -1,7 +1,6 @@
 package com.dozuki.ifixit.ui.guide.create;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,8 @@ import com.dozuki.ifixit.ui.guide.StepEmbedFragment;
 import com.dozuki.ifixit.ui.guide.StepVideoFragment;
 
 import java.util.ArrayList;
+
+import androidx.fragment.app.FragmentTransaction;
 
 
 public class StepEditFragment extends BaseFragment {

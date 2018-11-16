@@ -1,8 +1,8 @@
 package com.dozuki.ifixit.ui;
 
-import android.support.v4.app.Fragment;
-
 import com.dozuki.ifixit.App;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * Base class for Fragments. Handles bus registration and unregistration

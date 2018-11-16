@@ -1,8 +1,8 @@
 package com.dozuki.ifixit.ui;
 
-import android.support.v4.app.DialogFragment;
-
 import com.dozuki.ifixit.App;
+
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Base class for DialogFragments. Handles bus registration and unregistration

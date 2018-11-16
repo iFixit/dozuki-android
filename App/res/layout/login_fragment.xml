@@ -56,7 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp">
 
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                         android:inputType="textEmailAddress|textNoSuggestions"
                         app:hintTextAppearance="@style/Base.TextInputLayout">
                         <requestFocus/>
-                    </android.support.design.widget.TextInputEditText>
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.dozuki.ifixit.views.HelperTextInputLayout>
 
                 <com.dozuki.ifixit.views.HelperTextInputLayout
@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp">
-                    <android.support.design.widget.TextInputEditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2">
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/register_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                         android:contentDescription="@string/register_description"
                         android:text="@string/register"/>
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/signin_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

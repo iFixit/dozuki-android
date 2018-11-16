@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.v7.widget.AppCompatImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.Image;
@@ -19,7 +18,7 @@ import com.squareup.picasso.Target;
 
 import java.io.File;
 
-public class GalleryFallbackImage extends android.support.v7.widget.AppCompatImageView implements Target {
+public class GalleryFallbackImage extends androidx.appcompat.widget.AppCompatImageView implements Target {
    private static final String TAG = "GalleryFallbackImage";
    private boolean mTryLocalPath = true;
    private Image mImage;

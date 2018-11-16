@@ -1,23 +1,21 @@
 package com.dozuki.ifixit.ui.guide.create;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.guide.GuideInfo;
 import com.dozuki.ifixit.util.ImageSizes;
 import com.dozuki.ifixit.util.transformations.RoundedTransformation;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class GuideListItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
    private Context mContext;

@@ -1,21 +1,18 @@
 package com.dozuki.ifixit.ui.topic;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.dozuki.ifixit.R;
-import com.dozuki.ifixit.model.guide.GuideInfo;
 import com.dozuki.ifixit.model.topic.TopicLeaf;
 import com.dozuki.ifixit.ui.BaseFragment;
 import com.dozuki.ifixit.ui.EndlessRecyclerViewScrollListener;
-import com.dozuki.ifixit.ui.GuideListRecyclerAdapter;
 import com.dozuki.ifixit.ui.WikiListRecyclerAdapter;
 
-import java.util.ArrayList;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TopicRelatedWikisFragment extends BaseFragment {
 

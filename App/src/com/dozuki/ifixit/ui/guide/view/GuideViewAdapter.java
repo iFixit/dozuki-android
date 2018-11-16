@@ -2,12 +2,8 @@ package com.dozuki.ifixit.ui.guide.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FixedFragmentStatePagerAdapter;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 
-import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.model.guide.Guide;
 import com.dozuki.ifixit.ui.DocumentWebViewFragment;
@@ -16,7 +12,11 @@ import com.dozuki.ifixit.ui.topic.DocumentListFragment;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GuideViewAdapter extends FixedFragmentStatePagerAdapter {
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
+public class GuideViewAdapter extends FragmentStatePagerAdapter {
    private static final int GUIDE_INTRO_POSITION = 0;
    private static final int GUIDE_CONCLUSION_OFFSET = 1;
    private Context mContext;

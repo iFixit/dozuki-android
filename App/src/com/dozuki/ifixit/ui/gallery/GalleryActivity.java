@@ -4,11 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FixedFragmentStatePagerAdapter;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
-import android.support.v7.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -23,6 +18,12 @@ import com.viewpagerindicator.TitlePageIndicator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import androidx.appcompat.view.ActionMode;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 public class GalleryActivity extends BaseMenuDrawerActivity {
 
@@ -142,7 +143,7 @@ public class GalleryActivity extends BaseMenuDrawerActivity {
    /**
     * Why in the world is this class called StepAdapter?
     */
-   public class StepAdapter extends FixedFragmentStatePagerAdapter {
+   public class StepAdapter extends FragmentStatePagerAdapter {
 
       public StepAdapter(FragmentManager fm) {
          super(fm);

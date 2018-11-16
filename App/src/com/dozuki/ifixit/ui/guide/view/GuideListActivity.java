@@ -2,8 +2,6 @@ package com.dozuki.ifixit.ui.guide.view;
 
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.GridView;
 
@@ -17,6 +15,9 @@ import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class GuideListActivity extends BaseMenuDrawerActivity {
 

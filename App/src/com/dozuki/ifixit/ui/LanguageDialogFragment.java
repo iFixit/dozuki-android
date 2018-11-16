@@ -5,7 +5,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 
 import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.util.LocaleManager;

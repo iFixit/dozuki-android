@@ -3,14 +3,15 @@ package com.dozuki.ifixit.ui;
 import android.app.SearchManager;
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.CursorAdapter;
-import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.dozuki.ifixit.App;
 import com.dozuki.ifixit.R;
+
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
+import androidx.cursoradapter.widget.CursorAdapter;
 
 public class BaseSearchMenuDrawerActivity extends BaseMenuDrawerActivity {
 

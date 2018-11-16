@@ -3,10 +3,6 @@ package com.dozuki.ifixit.views;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -16,6 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.dozuki.ifixit.R;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class HelperTextInputLayout extends TextInputLayout {
    private static final Interpolator FAST_OUT_SLOW_IN_INTERPOLATOR = new FastOutSlowInInterpolator();

@@ -28,12 +28,12 @@ repositories {
 
 dependencies {
     implementation fileTree(include: '*.jar', dir: 'libs')
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:cardview-v7:28.0.0'
-    implementation 'com.android.support:design:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.android.support:palette-v7:28.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha01'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.palette:palette:1.0.0'
     implementation 'com.squareup.okio:okio:1.13.0'
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
@@ -49,6 +49,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-plus:7.0.0'
     implementation 'com.google.zxing:android-integration:3.3.0'
     implementation 'com.stepstone.stepper:material-stepper:4.3.1'
+    implementation 'com.evernote:android-state:1.4.1'
+    // Java only project
+    annotationProcessor 'com.evernote:android-state-processor:1.4.1'
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

@@ -1,6 +1,5 @@
 package com.dozuki.ifixit.ui.guide.create;
 
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,8 @@ import com.dozuki.ifixit.model.guide.Guide;
 import com.dozuki.ifixit.model.guide.GuideInfo;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 class GuideCreateRecyclerListAdapter extends RecyclerView.Adapter<GuideListItemHolder> {
    private ArrayList<GuideInfo> mGuides = new ArrayList<>();

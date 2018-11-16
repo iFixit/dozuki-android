@@ -1,13 +1,14 @@
 package com.dozuki.ifixit.views;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 public class EmptyRecyclerView extends RecyclerView {
    private View emptyView;
-   final private AdapterDataObserver observer = new AdapterDataObserver() {
+   final private RecyclerView.AdapterDataObserver observer = new AdapterDataObserver() {
       @Override
       public void onChanged() {
          checkIfEmpty();

@@ -1,10 +1,6 @@
 package com.dozuki.ifixit.ui.topic;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +11,11 @@ import com.dozuki.ifixit.ui.BaseFragment;
 import com.dozuki.ifixit.ui.DocumentListAdapter;
 
 import java.util.ArrayList;
+
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DocumentListFragment extends BaseFragment {
    public static final String ITEMS_KEY = "ITEMS_KEY";

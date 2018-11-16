@@ -14,7 +14,7 @@ import com.squareup.picasso.Target;
 
 import java.io.File;
 
-public class FallbackImageView extends android.support.v7.widget.AppCompatImageView implements Target {
+public class FallbackImageView extends androidx.appcompat.widget.AppCompatImageView implements Target {
    private static final String TAG = "FallbackImageView";
    private String mImageUrl = "";
    private Image mImage;

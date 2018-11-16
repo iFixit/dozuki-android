@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +32,9 @@ import com.squareup.otto.Subscribe;
 import com.viewpagerindicator.TitlePageIndicator;
 
 import java.util.ArrayList;
+
+import androidx.core.view.MenuItemCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class GuideViewActivity extends BaseMenuDrawerActivity implements
  ViewPager.OnPageChangeListener {

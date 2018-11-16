@@ -17,9 +17,10 @@
 package com.dozuki.ifixit.model.guide.wizard;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
 import java.util.ArrayList;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * Represents a single page in the wizard.

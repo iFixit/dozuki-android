@@ -1,9 +1,6 @@
 package com.dozuki.ifixit.ui.topic;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +14,10 @@ import com.dozuki.ifixit.ui.GuideListRecyclerAdapter;
 import com.dozuki.ifixit.util.LocaleManager;
 
 import java.util.ArrayList;
+
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TopicGuideListFragment extends BaseFragment {
 

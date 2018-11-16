@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +25,9 @@ import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiError;
 import com.dozuki.ifixit.util.api.ApiEvent;
 import com.squareup.otto.Subscribe;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.fragment.app.FragmentTransaction;
 
 public class StepPortalFragment extends BaseFragment implements
  StepReorderFragment.StepRearrangeListener {

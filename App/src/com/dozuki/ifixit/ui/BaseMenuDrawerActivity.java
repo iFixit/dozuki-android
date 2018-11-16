@@ -6,12 +6,6 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,10 +34,17 @@ import com.dozuki.ifixit.ui.topic.TopicActivity;
 import com.dozuki.ifixit.util.ImageSizes;
 import com.dozuki.ifixit.util.Utils;
 import com.dozuki.ifixit.util.transformations.CircleTransformation;
+import com.google.android.material.navigation.NavigationView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 /**
  * Base activity that displays the menu drawer.
@@ -290,7 +291,7 @@ public abstract class BaseMenuDrawerActivity extends BaseActivity
          } else {
             MarginLayoutParams marginParams = (MarginLayoutParams) displayName.getLayoutParams();
 
-            marginParams.setMargins(0, (int) Utils.pxFromDp(this, 20), 0 ,0);
+            marginParams.setMargins(0, (int) Utils.pxFromDp(this, 20), 0, 0);
             displayName.setLayoutParams(marginParams);
          }
 

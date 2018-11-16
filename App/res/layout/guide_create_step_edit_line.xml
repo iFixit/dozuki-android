@@ -11,7 +11,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp">
 
-        <android.support.v7.widget.AppCompatImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/guide_step_item_bullet_thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:src="@drawable/bullet_black"/>
     </RelativeLayout>
 
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/step_line_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:imeOptions="actionDone"
         android:inputType="textMultiLine|textAutoCorrect|textCapSentences"/>
 
-    <android.support.v7.widget.AppCompatImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/step_line_mic_button"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

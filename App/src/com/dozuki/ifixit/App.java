@@ -27,6 +27,7 @@ import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiContentProvider;
 import com.dozuki.ifixit.util.api.ApiSyncAdapter;
+import com.evernote.android.state.StateSaver;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GAServiceManager;
 import com.google.analytics.tracking.android.GoogleAnalytics;
@@ -130,6 +131,8 @@ public class App extends Application {
          return;
       }
       LeakCanary.install(this);
+
+      StateSaver.setEnabledForAllActivitiesAndSupportFragments(this, true);
 
       if (inDebug()) {
          StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
