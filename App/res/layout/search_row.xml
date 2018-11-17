@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.appcompat.widget.CardView
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/card_view"
         android:clickable="true"
@@ -30,4 +30,4 @@
                 style="@style/TextAppearance.AppCompat.Light.SearchResult.Title"/>
 
     </RelativeLayout>
-</androidx.appcompat.widget.CardView>
+</androidx.cardview.widget.CardView>

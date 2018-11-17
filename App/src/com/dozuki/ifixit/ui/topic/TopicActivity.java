@@ -15,6 +15,7 @@ import com.dozuki.ifixit.ui.LoadingFragment;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
+import com.livefront.bridge.Bridge;
 import com.squareup.otto.Subscribe;
 
 import androidx.fragment.app.Fragment;
@@ -103,6 +104,8 @@ public class TopicActivity extends BaseTopicActivity
    public void onDestroy() {
       getSupportFragmentManager().removeOnBackStackChangedListener(this);
       super.onDestroy();
+
+      Bridge.clear(this);
    }
 
    @Override
@@ -167,7 +170,7 @@ public class TopicActivity extends BaseTopicActivity
          } else {
             Intent intent = new Intent(this, TopicViewActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(TopicViewActivity.TOPIC_KEY, topic.getName());
+            bundle.putSerializable(TopicViewActivity.TOPIC_KEY, topic);
             intent.putExtras(bundle);
             startActivity(intent);
          }
@@ -177,13 +180,8 @@ public class TopicActivity extends BaseTopicActivity
 
             mTopicView.setTopicNode(topic);
          }
-         TopicListFragment frag = new TopicListFragment();
 
-         Bundle args = new Bundle();
-         args.putSerializable(TopicListFragment.CURRENT_TOPIC, topic.getName());
-         frag.setArguments(args);
-
-         changeTopicListView(frag, !topic.isRoot());
+         changeTopicListView(TopicListFragment.newInstance(topic), !topic.isRoot());
       }
    }
 

@@ -16,20 +16,31 @@ import com.dozuki.ifixit.model.topic.TopicNode;
 import com.dozuki.ifixit.ui.BaseActivity;
 import com.dozuki.ifixit.ui.BaseFragment;
 import com.dozuki.ifixit.ui.topic.adapters.TopicListAdapter;
+import com.livefront.bridge.Bridge;
 import com.marczych.androidsectionheaders.SectionHeadersAdapter;
 import com.marczych.androidsectionheaders.SectionListView;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+
 public class TopicListFragment extends BaseFragment
  implements TopicSelectedListener, OnItemClickListener {
-   public static final String CURRENT_TOPIC = "CURRENT_TOPIC";
+   public static final String TOPIC_KEY = "TOPIC_KEY";
 
    private TopicSelectedListener topicSelectedListener;
    private TopicNode mTopic;
    private SectionHeadersAdapter mTopicAdapter;
    private Context mContext;
    private SectionListView mListView;
+
+   public static Fragment newInstance(TopicNode topic) {
+      TopicListFragment frag = new TopicListFragment();
+      Bundle args = new Bundle();
+      args.putSerializable(TOPIC_KEY, topic);
+      frag.setArguments(args);
+      return frag;
+   }
 
    /**
     * Required for restoring fragments
@@ -40,12 +51,10 @@ public class TopicListFragment extends BaseFragment
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
-      Bundle b = getArguments();
+      Bridge.restoreInstanceState(this, savedInstanceState);
 
-      if (savedInstanceState != null) {
-         mTopic = (TopicNode)savedInstanceState.getSerializable(CURRENT_TOPIC);
-      } else if (b != null) {
-         mTopic = (TopicNode)b.getSerializable(CURRENT_TOPIC);
+      if (getArguments() != null) {
+         mTopic = (TopicNode)getArguments().getSerializable(TOPIC_KEY);
       }
    }
 
@@ -123,8 +132,7 @@ public class TopicListFragment extends BaseFragment
    @Override
    public void onSaveInstanceState(Bundle outState) {
       super.onSaveInstanceState(outState);
-
-      outState.putSerializable(CURRENT_TOPIC, mTopic);
+      Bridge.saveInstanceState(this, outState);
    }
 
    @Override

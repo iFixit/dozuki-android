@@ -27,7 +27,6 @@ import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiContentProvider;
 import com.dozuki.ifixit.util.api.ApiSyncAdapter;
-import com.evernote.android.state.StateSaver;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GAServiceManager;
 import com.google.analytics.tracking.android.GoogleAnalytics;
@@ -36,6 +35,8 @@ import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.StandardExceptionParser;
 import com.google.analytics.tracking.android.Tracker;
 import com.jakewharton.picasso.OkHttp3Downloader;
+import com.livefront.bridge.Bridge;
+import com.livefront.bridge.SavedStateHandler;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.otto.Bus;
 import com.squareup.picasso.Picasso;
@@ -52,6 +53,9 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import icepick.Icepick;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
@@ -132,7 +136,17 @@ public class App extends Application {
       }
       LeakCanary.install(this);
 
-      StateSaver.setEnabledForAllActivitiesAndSupportFragments(this, true);
+      Bridge.initialize(getApplicationContext(), new SavedStateHandler() {
+         @Override
+         public void saveInstanceState(@NonNull Object target, @NonNull Bundle state) {
+            Icepick.saveInstanceState(target, state);
+         }
+
+         @Override
+         public void restoreInstanceState(@NonNull Object target, @Nullable Bundle state) {
+            Icepick.restoreInstanceState(target, state);
+         }
+      });
 
       if (inDebug()) {
          StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
