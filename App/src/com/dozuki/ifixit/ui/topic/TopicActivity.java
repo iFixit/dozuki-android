@@ -15,7 +15,6 @@ import com.dozuki.ifixit.ui.LoadingFragment;
 import com.dozuki.ifixit.util.api.Api;
 import com.dozuki.ifixit.util.api.ApiCall;
 import com.dozuki.ifixit.util.api.ApiEvent;
-import com.livefront.bridge.Bridge;
 import com.squareup.otto.Subscribe;
 
 import androidx.fragment.app.Fragment;
@@ -104,8 +103,6 @@ public class TopicActivity extends BaseTopicActivity
    public void onDestroy() {
       getSupportFragmentManager().removeOnBackStackChangedListener(this);
       super.onDestroy();
-
-      Bridge.clear(this);
    }
 
    @Override
