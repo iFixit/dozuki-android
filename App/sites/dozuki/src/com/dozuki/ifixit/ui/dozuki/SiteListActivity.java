@@ -30,17 +30,12 @@ public class SiteListActivity extends BaseActivity
    private static final String SITE_LIST = "SITE_LIST";
    private static final String SITE_LIST_DIALOG = "SITE_LIST_DIALOG";
 
-   private Button mSiteListButton;
    private SiteListDialogFragment mSiteListDialog;
    private ArrayList<Site> mSiteList;
 
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-
-      if (savedInstanceState != null) {
-         mSiteList = (ArrayList<Site>)savedInstanceState.getSerializable(SITE_LIST);
-      }
 
       if (mSiteList == null) {
          Api.call(this, ApiCall.sites());
@@ -50,7 +45,7 @@ public class SiteListActivity extends BaseActivity
 
       setContentView(R.layout.site_list);
 
-      mSiteListButton = (Button)findViewById(R.id.list_dialog_btn);
+      Button mSiteListButton = (Button) findViewById(R.id.list_dialog_btn);
       Typeface btnType = Typeface.createFromAsset(getAssets(), "fonts/ProximaNovaRegular.ttf");
       mSiteListButton.setTypeface(btnType);
 
@@ -70,13 +65,6 @@ public class SiteListActivity extends BaseActivity
        findFragmentByTag(SITE_LIST_DIALOG);
 
       App.sendScreenView("/sitelist");
-   }
-
-   @Override
-   public void onSaveInstanceState(Bundle outState) {
-      super.onSaveInstanceState(outState);
-
-      outState.putSerializable(SITE_LIST, mSiteList);
    }
 
    @Override
