@@ -38,7 +38,7 @@ public class OpenIDActivity extends BaseActivity {
 
       boolean singleSignOn = extras.getBoolean(SINGLE_SIGN_ON, false);
 
-      Site site = ((App) getApplication()).getSite();
+      final Site site = ((App) getApplication()).getSite();
 
       mDomain = site.mDomain;
       mCustomDomain = site.mCustomDomain;
@@ -100,7 +100,15 @@ public class OpenIDActivity extends BaseActivity {
             // Some subdomains of ifixit.com have their session name as 'edusession'
             // so it doesn't collide with ifixit.com's session. Use 'edusession' if
             // it exists, otherwise stick to 'session'.
-            String sessionName = cookie.contains("edusession") ? "edusession" : "session";
+            String sessionName;
+
+            if (site.isIfixit()) {
+               sessionName = "session";
+            } else if (cookie.contains("edusession")) {
+               sessionName = "edusession";
+            } else {
+               sessionName = "session_" + site.mSiteid;
+            }
 
             // Cookie is a string like NAME=VALUE [; NAME=VALUE]
             String[] pairs = cookie.split(";");
