@@ -1,7 +1,6 @@
 package com.dozuki.ifixit.ui.auth;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.util.Log;

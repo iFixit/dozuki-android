@@ -16,7 +16,6 @@ import com.dozuki.ifixit.model.topic.TopicNode;
 import com.dozuki.ifixit.ui.BaseActivity;
 import com.dozuki.ifixit.ui.BaseFragment;
 import com.dozuki.ifixit.ui.topic.adapters.TopicListAdapter;
-import com.livefront.bridge.Bridge;
 import com.marczych.androidsectionheaders.SectionHeadersAdapter;
 import com.marczych.androidsectionheaders.SectionListView;
 
@@ -26,7 +25,7 @@ import androidx.fragment.app.Fragment;
 
 public class TopicListFragment extends BaseFragment
  implements TopicSelectedListener, OnItemClickListener {
-   public static final String TOPIC_KEY = "TOPIC_KEY";
+   public static final String CURRENT_TOPIC = "CURRENT_TOPIC";
 
    private TopicSelectedListener topicSelectedListener;
    private TopicNode mTopic;
@@ -37,7 +36,7 @@ public class TopicListFragment extends BaseFragment
    public static Fragment newInstance(TopicNode topic) {
       TopicListFragment frag = new TopicListFragment();
       Bundle args = new Bundle();
-      args.putSerializable(TOPIC_KEY, topic);
+      args.putSerializable(CURRENT_TOPIC, topic);
       frag.setArguments(args);
       return frag;
    }
@@ -51,10 +50,12 @@ public class TopicListFragment extends BaseFragment
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
-      Bridge.restoreInstanceState(this, savedInstanceState);
+      Bundle b = getArguments();
 
-      if (getArguments() != null) {
-         mTopic = (TopicNode)getArguments().getSerializable(TOPIC_KEY);
+      if (savedInstanceState != null) {
+         mTopic = (TopicNode)savedInstanceState.getSerializable(CURRENT_TOPIC);
+      } else if (b != null) {
+         mTopic = (TopicNode)b.getSerializable(CURRENT_TOPIC);
       }
    }
 
@@ -132,7 +133,8 @@ public class TopicListFragment extends BaseFragment
    @Override
    public void onSaveInstanceState(Bundle outState) {
       super.onSaveInstanceState(outState);
-      Bridge.saveInstanceState(this, outState);
+
+      outState.putSerializable(CURRENT_TOPIC, mTopic);
    }
 
    @Override
