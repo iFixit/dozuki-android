@@ -260,7 +260,7 @@ public class Site implements Serializable {
          site.mPublic = false;
          site.mAnswers = true;
          site.mDescription = "";
-         site.mStandardAuth = true;
+         site.mStandardAuth = false;
          site.mBarcodeScanner = false;
          site.mSsoUrl = "https://aristocrat.dozuki.com/Login";
          site.mPublicRegistration = false;
