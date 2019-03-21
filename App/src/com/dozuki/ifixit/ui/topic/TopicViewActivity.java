@@ -66,9 +66,13 @@ public class TopicViewActivity extends BaseTopicActivity {
       mToolbar = (Toolbar) findViewById(R.id.toolbar);
       mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
 
-      mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
-
       setSupportActionBar(mToolbar);
+
+      if (!mSite.mTheme.equals("white")) {
+         mToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+      } else {
+         mToolbar.setTitleTextColor(getResources().getColor(R.color.black));
+      }
 
       mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
          @Override
@@ -140,7 +144,12 @@ public class TopicViewActivity extends BaseTopicActivity {
       if (!mTopicName.equals("")) {
          mCollapsingToolbar.setTitle(mTopicName);
          mCollapsingToolbar.setCollapsedTitleTextAppearance(R.style.TextAppearance_AppCompat_Title);
-         mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+
+         if (mSite.mTheme.equals("white")) {
+            mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.black));
+         } else {
+            mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+         }
 
          if (mSite.mHasTitlePictures) {
             mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.transparent));

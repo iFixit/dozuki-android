@@ -227,8 +227,15 @@ public class ThumbnailView extends LinearLayout {
          mMainImage.setImageBitmap(image.getBitmap());
          thumb.image.setImageBitmap(image.getBitmap());
       }  else {
-         buildImage(PicassoUtils.displayImage(mPicasso, image.getPath(ImageSizes.stepThumb),
-          mIsOfflineGuide), thumb.image);
+         String thumbPath = image.getPath(ImageSizes.stepThumb);
+
+         // fallback to full size image
+         if (thumbPath == null || thumbPath.isEmpty()) {
+            thumbPath = image.getPath();
+         }
+
+         buildImage(PicassoUtils.displayImage(mPicasso, thumbPath, mIsOfflineGuide), thumb.image);
+         buildImage(PicassoUtils.displayImage(mPicasso, thumbPath, mIsOfflineGuide), mMainImage);
       }
 
       setThumbnailDimensions(thumb, mThumbnailHeight, mThumbnailWidth);

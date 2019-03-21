@@ -1,6 +1,8 @@
 package com.dozuki.ifixit.util;
 
 import android.content.Context;
+
+import com.dozuki.ifixit.R;
 import com.dozuki.ifixit.util.api.ApiSyncAdapter;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
@@ -17,9 +19,9 @@ public class PicassoUtils {
 
    public static RequestCreator displayImage(Picasso picasso, String url, boolean offline) {
       if (offline) {
-         return picasso.load(new File(ApiSyncAdapter.getOfflineMediaPath(url)));
+         return picasso.load(new File(ApiSyncAdapter.getOfflineMediaPath(url))).error(R.drawable.no_image);
       } else {
-         return picasso.load(url);
+         return picasso.load(url).error(R.drawable.no_image);
       }
    }
 }

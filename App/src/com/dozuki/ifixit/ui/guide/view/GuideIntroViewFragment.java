@@ -48,7 +48,7 @@ public class GuideIntroViewFragment extends BaseFragment {
       if (savedInstanceState != null && mGuide == null) {
          mGuide = (Guide) savedInstanceState.getSerializable(SAVED_GUIDE);
       } else if (bundle != null) {
-         mGuide = (Guide)bundle.getSerializable(GUIDE_KEY);
+         mGuide = (Guide) bundle.getSerializable(GUIDE_KEY);
       }
    }
 

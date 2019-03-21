@@ -70,7 +70,7 @@ public class Image implements Serializable {
    }
 
    public boolean hasLocalPath() {
-      return mLocalPath != null && mLocalPath.length() > 0;
+      return mLocalPath != null && !mLocalPath.isEmpty();
    }
 
    public String getLocalPath() {
