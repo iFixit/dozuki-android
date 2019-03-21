@@ -63,8 +63,8 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        versionCode 77
-        versionName "3.0.14"
+        versionCode 78
+        versionName "3.0.15"
         minSdkVersion 17
         targetSdkVersion 28
         applicationId "com.dozuki.ifixit"
