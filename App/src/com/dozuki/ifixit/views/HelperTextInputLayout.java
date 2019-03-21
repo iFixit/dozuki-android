@@ -83,12 +83,14 @@ public class HelperTextInputLayout extends TextInputLayout {
             mHelperView.setText(mHelperText);
             mHelperView.setVisibility(VISIBLE);
             addView(mHelperView);
-            if (mHelperView != null) {
+            EditText editText = getEditText();
+
+            if (mHelperView != null && editText != null) {
                ViewCompat.setPaddingRelative(
                 mHelperView,
-                ViewCompat.getPaddingStart(getEditText()),
-                0, ViewCompat.getPaddingEnd(getEditText()),
-                getEditText().getPaddingBottom());
+                ViewCompat.getPaddingStart(editText),
+                0, ViewCompat.getPaddingEnd(editText),
+                editText.getPaddingBottom());
             }
          } else {
             removeView(mHelperView);
